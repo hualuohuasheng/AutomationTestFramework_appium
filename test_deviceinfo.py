@@ -3,6 +3,7 @@
 import os
 import re
 import platform
+from appium import webdriver
 
 def get_app_info():
     # get device name
@@ -21,7 +22,7 @@ def get_app_info():
         'platformVersion': deviceVersion.rstrip('\n'),
         'deviceName': deviceId,
         'appPackage': appInfo[0],
-        'appActivity': appInfo[1],
+        'appActivity': appInfo[0] + ".setting.LoginSettingActivity",
         'autoAcceptAlerts': 'true',
         'noReset': 'true'
     }
@@ -29,7 +30,7 @@ def get_app_info():
     print(desired_caps)
     return desired_caps
 
-get_app_info()
+desired_caps = get_app_info()
 
 def get_system_info():
 
@@ -44,8 +45,8 @@ def get_system_info():
 
     print(platform.system())
 
-get_system_info()
+# get_system_info()
 
 command_executor = "http://localhost:4723/wd/hub"
 
-
+driver = webdriver.Remote(command_executor, desired_caps)
