@@ -4,6 +4,7 @@ import os
 import re
 import platform
 from appium import webdriver
+from time import sleep
 
 def get_app_info():
     # get device name
@@ -47,6 +48,30 @@ def get_system_info():
 
 # get_system_info()
 
+def join_leave_room(driver):
+    room_id = "//android.widget.TextView[@text='RoomID :4716']"
+    driver.find_element_by_xpath(room_id).click()
+    sleep(2)
+    driver.find_element_by_xpath("//android.widget.Button[@text='JOIN']").click()
+    sleep(5)
+    driver.find_element_by_xpath("//android.widget.ImageView[@resource_id='com.powerinfo.pi_iroom.demo:id/iv_back']").click()
+    sleep(3)
+
 command_executor = "http://localhost:4723/wd/hub"
 
 driver = webdriver.Remote(command_executor, desired_caps)
+
+driver.find_element_by_xpath("//android.widget.TextView[@text='游戏连麦']").click()
+sleep(3)
+num = 1
+while num < 300:
+    print("第"+str(num)+"次")
+    driver.find_element_by_id("com.powerinfo.pi_iroom.demo:id/iv_create_room").click()
+    # driver.find_element_by_xpath("//android.widget.ImageView[@resource_id='com.powerinfo.pi_iroom.demo:id/iv_create_room']").click()
+    sleep(2)
+    driver.find_element_by_xpath("//android.widget.Button[@text='START']").click()
+    sleep(5)
+    driver.find_element_by_id("com.powerinfo.pi_iroom.demo:id/iv_back").click()
+    # driver.find_element_by_xpath("//android.widget.ImageView[@resource_id='com.powerinfo.pi_iroom.demo:id/iv_back']").click()
+    num += 1
+    sleep(1)
