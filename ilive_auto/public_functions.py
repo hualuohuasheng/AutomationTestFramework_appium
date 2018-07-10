@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 import os
 import re
 
@@ -51,5 +53,4 @@ def get_ios_app_info():
     print(desired_caps)
     return desired_caps
 
-info = get_ios_app_info()
 
