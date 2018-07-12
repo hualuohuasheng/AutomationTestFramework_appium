@@ -29,12 +29,18 @@ sleep(2)
 
 s = driver.find_element_by_name('ConfigurationTemplate')
 
-print(s)
+# print(s)
 
-Select(s).select_by_index(1)
-
-ops = Select(s).all_selected_options()
-print(ops)
-
+# Select(s).select_by_index(1)
+配置模板下拉框 = Select(s)
+ops = 配置模板下拉框.options
+# print(ops)
+configure_modes = []
 for op in ops:
-    print(op)
+    configure_modes.append(op.text)
+
+print(configure_modes)
+
+print(configure_modes[2])
+# Select(s).select_by_value('2')
+#配置模板下拉框.deselect_by_visible_text(configure_modes[2])
