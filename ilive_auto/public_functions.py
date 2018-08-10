@@ -12,7 +12,7 @@ def get_android_app_info(app="iLive"):
     deviceVersion = os.popen('adb shell getprop ro.build.version.release').read()
 
     # get app package name and activity
-    if app == "iLive":
+    if app == "iLive111":
         appPackage = 'com.powerinfo.pi_iroom.demo'
         appActivity = 'com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity'
     else:
@@ -20,6 +20,7 @@ def get_android_app_info(app="iLive"):
         appInfo = re.findall(r'com.+?tivity', getappInfo)[0].split('/')
         appPackage = appInfo[0]
         appActivity = appInfo[1]
+        appActivity = 'com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity'
     desired_caps = {
         'platformName': 'Android',
         'platformVersion': deviceVersion.rstrip('\n'),
