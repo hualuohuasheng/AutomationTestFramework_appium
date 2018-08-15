@@ -13,8 +13,7 @@ class PublicDriver:
 
     def location_by_xpath(self,name,type='TextView',deviceos='android'):
         xpath=f"//android.widget.{type}[@text='{name}']" if deviceos =='android' else f"//"
-        print(xpath)
-        print(self.driver.find_element_by_xpath(xpath))
+        # print(xpath)
         return self.driver.find_element_by_xpath(xpath)
 
     def location_by_id(self,functionid,deviceos='android'):
