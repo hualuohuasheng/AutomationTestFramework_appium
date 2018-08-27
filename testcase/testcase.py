@@ -1,8 +1,9 @@
 # -*- coding:utf-8 -*-
-import public_functions
-import ilive_main
-from time import sleep
 import unittest
+import ilive_main
+import public_functions
+
+
 
 
 class PowerinfoILiveTest(unittest.TestCase):
