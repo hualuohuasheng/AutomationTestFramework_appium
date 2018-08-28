@@ -2,25 +2,29 @@
 
 import os
 import re
+import subprocess
 
-def get_android_app_info(app="iLive"):
+def get_android_app_info(app="iRoom"):
     # get device name
-    readDeviceId = os.popen("adb devices").readlines()
-    deviceId = re.findall(r'^\w*\b', readDeviceId[1])[0]
+    # readDeviceId = os.popen("adb devices").readlines()
+    # deviceId = re.findall(r'^\w*\b', readDeviceId[1])[0]
+    deviceId = subprocess.getoutput('adb devices').split('\n')[1].split("\t")[0]
 
     # get Android device systerm version
-    deviceVersion = os.popen('adb shell getprop ro.build.version.release').read()
+    # deviceVersion = os.popen('adb shell getprop ro.build.version.release').read()
+    deviceVersion = subprocess.getoutput('adb shell getprop ro.build.version.release')
 
     # get app package name and activity
-    if app == "iLive111":
-        appPackage = 'com.powerinfo.pi_iroom.demo'
+    if app == "iRoom":
+        getappInfo = subprocess.getoutput("adb shell dumpsys window w |findstr \/|findstr name=")
+        appInfo = re.findall(r'com.+?tivity', getappInfo)[0].split('/')
+        appPackage = appInfo[0]
         appActivity = 'com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity'
     else:
-        getappInfo = os.popen("adb shell dumpsys window w |findstr \/|findstr name=").read()
+        getappInfo = subprocess.getoutput("adb shell dumpsys window w |findstr \/|findstr name=")
         appInfo = re.findall(r'com.+?tivity', getappInfo)[0].split('/')
         appPackage = appInfo[0]
         appActivity = appInfo[1]
-        appActivity = 'com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity'
     desired_caps = {
         'platformName': 'Android',
         'platformVersion': deviceVersion.rstrip('\n'),

@@ -1,8 +1,11 @@
 # -*- coding:utf-8 -*-
-import unittest
-import ilive_main
-import public_functions
+import sys
+sys.path.append('..')
 
+from time import sleep
+import unittest
+from lib.ilive_main import AndriodILive
+from lib.public_functions import get_android_app_info
 
 
 
@@ -10,8 +13,8 @@ class PowerinfoILiveTest(unittest.TestCase):
 
 
     def setUp(self):
-        self.info = public_functions.get_android_app_info()
-        self.iroom = ilive_main.AndriodILive(self.info)
+        self.info = get_android_app_info()
+        self.iroom = AndriodILive(self.info)
         self.iroom.choose_functions('多人群聊')
         pass
 

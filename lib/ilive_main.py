@@ -1,7 +1,5 @@
 # -*- coding:utf-8 -*-
 
-import os
-import re
 from time import sleep
 from appium import webdriver
 
