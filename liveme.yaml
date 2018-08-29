@@ -1,0 +1,25 @@
+---
+# liveme 相关控件
+
+liveme:
+  开播 : uplive
+  多人直播 : live_multi_layout
+  开始直播 : txt_video_start_live
+  房间号 : shortid_iv
+  接受连麦请求 : apply_bt
+  加入按钮 : apply_btn
+  视频控件 : vcall_union_root_view
+  辅播编号 : num_tv
+  辅播下麦 : layout_quit
+  辅播切换摄像头 : layout_switch
+  开关麦克风 : layout_mute
+  退出房间 : img_close
+  home : home_page
+  搜索房间列表 : home_search_img
+  搜索框 : search_content
+  搜索结果 : search_list_root
+  直播状态 : card_state_bg
+
+
+
+
