@@ -20,6 +20,22 @@ liveme:
   搜索结果 : search_list_root
   直播状态 : card_state_bg
 
-
-
-
+iRoom:
+  房间列表 : //android.widget.TextView[@text='RoomID :xxxx'] #xxxx代表房间号,by_xpath
+  创建房间 : iv_create_room
+  版本信息 : tv_vision
+  START按钮 : bt_start
+  上锁 : iv_setLock
+  推流配置信息 : tv_setting_info
+  设置 : iv_setting
+  RoomID : tv_roomId
+  推流信息 : tv_info
+  打点码 : mBtnWhoops
+  合并房间 : iv_pk
+  摄像头 : iv_camera
+  闪光灯 : iv_torch
+  切换角色 : iv_changeRole
+  切换房间 : iv_changeRoom
+  
+  
+  

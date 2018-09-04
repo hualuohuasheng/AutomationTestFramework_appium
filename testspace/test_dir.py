@@ -22,22 +22,31 @@ print(fn.stem)
 
 print(Path(__file__).cwd().parent)
 
-p = subprocess.getoutput('adb devices')
-print(p)
-print(p.split('\n')[1].split("\t")[0])
-print(re.findall(r'^\w*\b', p.split('\n')[1])[0])
+# p = subprocess.getoutput('adb devices')
+# print(p)
+# print(p.split('\n')[1].split("\t")[0])
+# print(re.findall(r'^\w*\b', p.split('\n')[1])[0])
 
-import sys
+# import sys
 
-sys.path.append("..")
+# sys.path.append("..")
 
-from lib.public_functions import get_android_app_info
+# from lib.public_functions import get_android_app_info
 # import lib.public_functions as f
 
-info = get_android_app_info('liveme')
+# info = get_android_app_info('liveme')
 
+# print(info)
+
+filepath = Path(__file__).cwd().parent / 'app控件.yaml'
+
+print(filepath)
+import yaml
+
+with open(filepath, 'r') as loadfile:
+    info = yaml.load(loadfile)
 print(info)
-
+print(info['liveme']['开播'])
 
 
 
