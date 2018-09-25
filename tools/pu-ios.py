@@ -2,6 +2,8 @@
 import time
 filename = r"f:\logs\iroom\psdemux_log.txt"
 
+filename = r"/Users/liminglei/Desktop/log/psdemux_log.txt"
+
 pstreams = {}
 
 with open(filename) as f:

@@ -1,8 +1,12 @@
 # -*- coding:utf-8 -*-
+
 import os
 from pathlib import Path
 import re
 import subprocess
+import platform
+
+print(platform.platform())
 
 # 获取当前目录
 # print(os.getcwd())
@@ -10,6 +14,7 @@ import subprocess
 # print(Path.cwd())
 
 # 获取上级目录
+print(os.name)
 
 # print(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 # print(os.path.abspath(os.path.dirname(os.getcwd())))
@@ -41,12 +46,14 @@ print(Path(__file__).cwd().parent)
 filepath = Path(__file__).cwd().parent / 'app控件.yaml'
 
 print(filepath)
+
 import yaml
 
-with open(filepath, 'r') as loadfile:
-    info = yaml.load(loadfile)
+with open(filepath, 'r', encoding='gbk') as fs:
+    info = yaml.load(fs)
+
 print(info)
 print(info['liveme']['开播'])
-
+print(info['iRoom']['房间列表'])
 
 

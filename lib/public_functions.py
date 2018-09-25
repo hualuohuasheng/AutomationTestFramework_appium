@@ -3,6 +3,20 @@
 import os
 import re
 import subprocess
+from pathlib import Path
+import yaml
+
+
+
+def 获取控件文件信息():
+    控件文件路径 = Path(__file__).cwd().parent / 'app控件.yaml'
+    with open(控件文件路径,'r', encoding='gbk') as loadfile:
+        info = yaml.load(loadfile)
+
+    return info
+
+
+
 
 def get_android_app_info(app="iRoom"):
     # get device name
@@ -50,8 +64,6 @@ def get_ios_app_info():
         'automationName': 'XCUITest',
         'bundleId': bundleid[0].split(' - ')[0],
         'udid': udid[0].rstrip(),
-        'xcodeOrgId': 'H6E8P88Q4E',
-        'xcodeSigningId': 'iPhone Develaoper',
         'noReset': 'true'
     }
 
