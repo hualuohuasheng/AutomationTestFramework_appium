@@ -5,18 +5,24 @@ import re
 import subprocess
 from pathlib import Path
 import yaml
+import platform
 
+def 获取当前系统():
+    systeminfo = platform.platform()
+    print(systeminfo)
+    if 'Windows' in systeminfo :
+        systemname = 'windows'
+    elif 'Darwin' in systeminfo :
+        systemname = 'mac'
+    else:
+        systemname = 'linux'
+    return systemname
 
-
-def 获取控件文件信息():
-    控件文件路径 = Path(__file__).cwd().parent / 'app控件.yaml'
+def 获取控件文件信息(filename='app控件'):
+    控件文件路径 = Path(__file__).cwd().parent / f'{filename}.yaml'
     with open(控件文件路径,'r', encoding='gbk') as loadfile:
         info = yaml.load(loadfile)
-
     return info
-
-
-
 
 def get_android_app_info(app="iRoom"):
     # get device name
@@ -29,13 +35,20 @@ def get_android_app_info(app="iRoom"):
     deviceVersion = subprocess.getoutput('adb shell getprop ro.build.version.release')
 
     # get app package name and activity
+
+    if 'mac' in 获取当前系统():
+        find_exec = 'grep'
+    else:
+        find_exec = 'findstr'
+    cmd_exec = f'adb shell dumpsys window w |{find_exec} \/|{find_exec} name='
+
     if app == "iRoom":
-        getappInfo = subprocess.getoutput("adb shell dumpsys window w |findstr \/|findstr name=")
+        getappInfo = subprocess.getoutput(cmd_exec)
         appInfo = re.findall(r'com.+?tivity', getappInfo)[0].split('/')
         appPackage = appInfo[0]
         appActivity = 'com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity'
     else:
-        getappInfo = subprocess.getoutput("adb shell dumpsys window w |findstr \/|findstr name=")
+        getappInfo = subprocess.getoutput(cmd_exec)
         appInfo = re.findall(r'com.+?tivity', getappInfo)[0].split('/')
         appPackage = appInfo[0]
         appActivity = appInfo[1]

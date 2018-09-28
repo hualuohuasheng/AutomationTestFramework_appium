@@ -18,6 +18,9 @@ class PowerinfoILiveTest(unittest.TestCase):
         self.iroom.choose_functions('多人群聊')
         pass
 
+    def setTeardown(self):
+        dri
+
     def test_ChangeRole(self):
         num = 1
         while num < 5:
