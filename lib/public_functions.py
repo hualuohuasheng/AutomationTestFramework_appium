@@ -72,10 +72,10 @@ def get_ios_app_info():
 
     desired_caps = {
         'platformName':'IOS',
-        'platformVesion': device_os_version[0],
+        'platformVesion': device_os_version[0].rstrip(),
         'deviceName': 'IPhone',
         'automationName': 'XCUITest',
-        'bundleId': bundleid[0].split(' - ')[0],
+        'bundleId': bundleid[0].split(',')[0],
         'udid': udid[0].rstrip(),
         'noReset': 'true'
     }
