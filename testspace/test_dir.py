@@ -43,7 +43,7 @@ print(Path(__file__).cwd().parent)
 
 # print(info)
 
-filepath = Path(__file__).cwd().parent / 'app控件.yaml'
+filepath = Path(__file__).cwd().parent / 'app控件.yml'
 
 print(filepath)
 
@@ -54,6 +54,14 @@ with open(filepath, 'r', encoding='gbk') as fs:
 
 print(info)
 print(info['liveme']['开播'])
-print(info['iRoom']['房间列表'])
 
 
+a = ['a','b','c','d','e','f','g']
+print(a)
+
+print(a[2:5+1])
+
+filedir = "/Users/liminglei/Downloads/"
+file_toogle = open(filedir+"file1.txt",'w+')
+file_toogle.writelines(a[1:(5+1)])
+file_toogle.close()

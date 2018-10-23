@@ -19,10 +19,18 @@ def 获取当前系统():
     return systemname
 
 def 获取控件文件信息(filename='app控件'):
-    控件文件路径 = Path(__file__).cwd().parent / f'{filename}.yaml'
+    控件文件路径 = Path(__file__).cwd().parent / f'{filename}.yml'
     with open(控件文件路径,'r', encoding='gbk') as loadfile:
         info = yaml.load(loadfile)
     return info
+
+def 启动appium_server(udid,port=4723):
+    if 'mac' in 获取当前系统():
+        excute_cmd_base = "node /Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js"
+    else:
+        excute_cmd_base = "appium"
+    excute_cmd = "{} -a 127.0.0.1 -p {} -U {} --session-override".format(excute_cmd_base,port,udid)
+    print(excute_cmd)
 
 def get_android_app_info(app="iRoom"):
     # get device name

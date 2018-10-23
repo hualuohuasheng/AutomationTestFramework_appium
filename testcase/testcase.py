@@ -4,8 +4,7 @@ sys.path.append('..')
 
 from time import sleep
 import unittest
-from lib.ilive_main import AndriodILive
-from lib.public_functions import get_android_app_info
+import lib.public_functions as pubfuc
 
 
 
@@ -13,13 +12,14 @@ class PowerinfoILiveTest(unittest.TestCase):
 
 
     def setUp(self):
-        self.info = get_android_app_info()
-        self.iroom = AndriodILive(self.info)
-        self.iroom.choose_functions('多人群聊')
-        pass
+        self.控件信息 = pubfuc.获取控件文件信息()
+        self.info = 获取控件文件信息('devices')
+
+
+        self.driver = webdriver.Remote("http://localhost:4723/wd/hub", self.info['oppo_R9'])
 
     def setTeardown(self):
-        dri
+        self.driver.quite()
 
     def test_ChangeRole(self):
         num = 1

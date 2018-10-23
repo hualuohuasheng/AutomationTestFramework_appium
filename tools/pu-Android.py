@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 filename = r"f:\logs\iroom\psdemux_log.txt"
-#filename = r"f:\logs\iroom\1.txt"
+filename = r"/Users/liminglei/Desktop/log/psdemux_log.txt"
 
 pstreams = {}
 

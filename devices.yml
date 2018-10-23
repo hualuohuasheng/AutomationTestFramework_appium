@@ -1,0 +1,20 @@
+---
+### 手机设备信息
+
+oppo_R9:
+  platformName : Android
+  platformVersion : 5.1
+  deviceName : 8SCM65OZ99999999
+  appPackage : com.powerinfo.pi_iroom.demo
+  appActivity : com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts : true
+  noReset : true
+
+meizu_Mate2 :
+  platformName: Android
+  platformVersion: 5.1
+  deviceName: 810BBM623MG2
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  noReset: true
