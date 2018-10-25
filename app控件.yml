@@ -21,38 +21,100 @@ liveme:
   直播状态 : card_state_bg
 
 iRoom_Android:
+  多人群聊:
+    xpath: //android.widget.TextView[@text='多人群聊']
   房间列表:
     xpath: //android.widget.TextView[@text='RoomID :xxxx']
   创建房间:
-    id: iv_create_room
+    id: com.powerinfo.pi_iroom.demo:id/iv_create_room #加号
   版本信息:
-    id: tv_vision
-  START按钮:
-    id: bt_start
-  上锁:
-    id: iv_setLock
-  推流配置信息:
-    id: tv_setting_info
-  设置:
-    id: iv_setting
+    id: com.powerinfo.pi_iroom.demo:id/tv_vision
+  START:
+    id: com.powerinfo.pi_iroom.demo:id/bt_start
+    xpath: //android.widget.Button[@text='START']
+  JOIN:
+    id: com.powerinfo.pi_iroom.demo:id/bt_start
+    xpath: //android.widget.Button[@text='JOIN']
   RoomID:
-    id: tv_roomId
+    id: com.powerinfo.pi_iroom.demo:id/tv_roomId
+    xpath: //android.widget.TextView[@text='RoomId:xxxx']
   推流信息:
-    id: tv_info
+    id: com.powerinfo.pi_iroom.demo:id/tv_info
   打点码:
-    id: mBtnWhoops
+    id: com.powerinfo.pi_iroom.demo:id/mBtnWhoops
   合并房间:
-    id: iv_pk
+    id: com.powerinfo.pi_iroom.demo:id/iv_pk
+    xpath: //android.widget.RelativeLayout/android.widget.ImageView[@index=2]
+  发送msc消息:
+    id: com.powerinfo.pi_iroom.demo:id/iv_showMscControlMessage
+    xpath: //android.widget.RelativeLayout/android.widget.ImageView[@index=1]
+  消息窗体:
+    id: com.powerinfo.pi_iroom.demo:id/et_message
   摄像头:
-    id: iv_camera
+    id: com.powerinfo.pi_iroom.demo:id/iv_camera
+    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=0]
   闪光灯:
-    id: iv_torch
+    id: com.powerinfo.pi_iroom.demo:id/iv_torch
+    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=1]
+  美颜:
+    id: com.powerinfo.pi_iroom.demo:id/iv_beauty
+    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=2]
   切换角色:
-    id: iv_changeRole
+    id: com.powerinfo.pi_iroom.demo:id/iv_changeRole
+    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=3]
   切换房间:
-    id: iv_changeRoom
+    id: com.powerinfo.pi_iroom.demo:id/iv_changeRoom
+    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=4]
+  切换房间列表:
+    xpath: //android.view.ViewGroup/android.widget.LinearLayout[@index=0]
+  切换房间列表取消:
+    id: com.powerinfo.pi_iroom.demo:id/md_buttonDefaultNegative
+    xpath: //android.widget.TextView[@text='CANCEL']
   离开房间:
-    id: iv_back
+    id: com.powerinfo.pi_iroom.demo:id/iv_back
+    xpath: //android.widget.RelativeLayout/android.widget.ImageView[@index=0]
+  上锁:
+    id: com.powerinfo.pi_iroom.demo:id/iv_setLock
+  推流配置信息:
+    id: com.powerinfo.pi_iroom.demo:id/tv_setting_info
+  设置:
+    id: com.powerinfo.pi_iroom.demo:id/iv_setting
+  开发者选项:
+    id: com.powerinfo.pi_iroom.demo:id/bt_developer
+    xpath: //android.widget.Button[@text='Developer Options']
+  设置码率:
+    id: com.powerinfo.pi_iroom.demo:id/mEtBitrate
+  设置帧率:
+    #android:id/text1
+    id: com.powerinfo.pi_iroom.demo:id/mSpOutputSize
+  设置推流分辨率:
+    id: com.powerinfo.pi_iroom.demo:id/mSpOutputSize
+  设置采集分辨率:
+    id: com.powerinfo.pi_iroom.demo:id/mSpPreviewSize
+  勾选观众:
+    id: com.powerinfo.pi_iroom.demo:id/mScViewerMode
+  选择观众模式:
+    id: com.powerinfo.pi_iroom.demo:id/mSpViewerPlayMode
+  上传日志:
+    id: com.powerinfo.pi_iroom.demo:id/mBtnUploadLog
+    xpath: //android.widget.Button[@text='Upload Log']
+  清除日志:
+    id: com.powerinfo.pi_iroom.demo:id/mBtnDeleteLog
+    xpath: //android.widget.Button[@text='Delete Log']
+  logout:
+    id: com.powerinfo.pi_iroom.demo:id/mBtnDeleteLog
+    xpath: //android.widget.Button[@text='Logout']
+  logout信息:
+    id: com.powerinfo.pi_iroom.demo:id/md_content
+    xpath: //android.widget.TextView[@text='please kill the app and restart!']
+  设置ndselect:
+    id: com.powerinfo.pi_iroom.demo:id/mEtNdSelect
+    xpath: //android.widget.EditText[@text='enter ndSelect']
+  设置groupid:
+    id: com.powerinfo.pi_iroom.demo:id/mEtGroupId
+    xpath: //android.widget.EditText[@text='enter groupId']
+  loginStart:
+    xpath: //android.widget.Button[@text='START']
 
 iRoom_IOS:
   房间列表:
