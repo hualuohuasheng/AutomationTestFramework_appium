@@ -18,3 +18,42 @@ meizu_Mate2 :
   appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
   autoAcceptAlerts: true
   noReset: true
+
+p10_268 :
+  platformName: Android
+  platformVersion: 8.0
+  deviceName: VGT7N17811000107
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  noReset: true
+
+ip5s_test8 :
+  platformName: IOS
+  platformVersion: 11.4
+  deviceName: IPhone
+  automationName: XCUITest
+  bundleId: com.powerinfo.iRoom
+  udid: d47009c7e7adee3884cf128c36f5a10b2a3f174a
+  autoAcceptAlerts: true
+  noReset: true
+
+ip5s_test5 :
+  platformName: IOS
+  platformVersion: 12.0
+  deviceName: IPhone
+  automationName: XCUITest
+  bundleId: com.powerinfo.iRoom
+  udid: 91dec87e885bafe2c956f9b593695517f4c33528
+  autoAcceptAlerts: true
+  noReset: true
+
+ip6s_test13 :
+  platformName: IOS
+  platformVersion: 11.3.1
+  deviceName: IPhone
+  automationName: XCUITest
+  bundleId: com.powerinfo.iRoom
+  udid: fbbfdbd132f5560dca7e3feb08c18b9e9060a3e2
+  autoAcceptAlerts: true
+  noReset: true

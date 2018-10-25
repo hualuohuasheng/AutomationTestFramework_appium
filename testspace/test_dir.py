@@ -55,13 +55,23 @@ with open(filepath, 'r', encoding='gbk') as fs:
 print(info)
 print(info['liveme']['开播'])
 
+# from multiprocessing import Process,Pool
+# import subprocess
+# import time
+#
+# def startAppiumServer(aport,bport,udid):
+#     print()
+#     cmd_base = "node /Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js -a 127.0.0.1 --local-timezone"
+#     cmd = cmd_base + f" -p {aport}"+ f" -bp {bport}"+ f" -U {udid} > /Users/liminglei/Desktop/appium/appiumlog.txt"
+#     subprocess.Popen(cmd,shell=True)
+#
+#
+# proc = Process(target=startAppiumServer,args=(4723,4724,"VGT7N17811000107",))
+#
+# proc.start()
+# proc.join()
+# # time.sleep(15)
+# proc.terminate()
 
-a = ['a','b','c','d','e','f','g']
-print(a)
-
-print(a[2:5+1])
-
-filedir = "/Users/liminglei/Downloads/"
-file_toogle = open(filedir+"file1.txt",'w+')
-file_toogle.writelines(a[1:(5+1)])
-file_toogle.close()
+for i in range(5):
+    print(i)
