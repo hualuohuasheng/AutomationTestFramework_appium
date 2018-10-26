@@ -9,7 +9,7 @@ import multiprocessing
 
 def 获取当前系统():
     systeminfo = platform.platform()
-    print(systeminfo)
+    # print(systeminfo)
     if 'Windows' in systeminfo :
         systemname = 'windows'
     elif 'Darwin' in systeminfo :
@@ -35,6 +35,12 @@ def 启动appium_server(udid,port=4723):
     subprocess.Popen()
     print(excute_cmd)
 
+
+def waittimeout(element,timeout=10):
+    begintime = time.time()
+    while begintime + timeout > time.time():
+        if element is not None:
+            break
 
 
 def get_android_app_info(app="iRoom"):
@@ -93,11 +99,11 @@ def get_ios_app_info():
 class StartDriver():
 
     def __init__(self,devicelist):
-        self.设备信息 = 获取控件文件信息('devices')
+        设备信息 = 获取控件文件信息('devices')
         self.aport = list(range(4723, 4800, 2))
         self.bport = list(range(4724, 4800, 2))
         self.devicelist = devicelist
-        self.realdevice = [self.设备信息[device] for device in devicelist]
+        self.realdevice = [设备信息[device] for device in devicelist]
 
 
     def startAppiumServer(self,i):
@@ -108,8 +114,8 @@ class StartDriver():
             excute_cmd_base = "appium -a 127.0.0.1"
 
         uidkey = 'udid' if 'IOS' in self.realdevice[i]['platformName'] else 'deviceName'
-        print(uidkey)
-        excute_cmd = f"{excute_cmd_base} -p {self.aport[i]} -bp {self.bport[i]} -U {self.realdevice[i][uidkey]} --local-timezone"
+        # print(uidkey)
+        excute_cmd = f"{excute_cmd_base} -p {self.aport[i]} -bp {self.bport[i]} -U {self.realdevice[i][uidkey]} --local-timezone --log-timestamp --command-timeout 3000"
 
         subprocess.Popen(excute_cmd,shell=True,stdout=open(f"/Users/liminglei/Desktop/appium/appiumlog_{self.realdevice[i][uidkey]}.txt",'w+'))
 
@@ -121,7 +127,8 @@ class StartDriver():
         for i in range(len(self.devicelist)):
             getportused = subprocess.getoutput(f'lsof -i:{self.aport[i]}')
             info = getportused.split('\n')
-            pidlist.append(re.split('\s+',info[1])[1])
+            if len(info) > 1:
+                pidlist.append(re.split('\s+',info[1])[1])
 
         # print(pidlist)
         return pidlist
@@ -144,6 +151,5 @@ def startMultAppiumServer(sd):
 
     for pro in proc_list:
         pro.join()
-
 
 

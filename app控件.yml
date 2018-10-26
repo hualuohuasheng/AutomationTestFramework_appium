@@ -44,35 +44,35 @@ iRoom_Android:
     id: com.powerinfo.pi_iroom.demo:id/mBtnWhoops
   合并房间:
     id: com.powerinfo.pi_iroom.demo:id/iv_pk
-    xpath: //android.widget.RelativeLayout/android.widget.ImageView[@index=2]
+    xpath: //android.widget.RelativeLayout/android.widget.ImageView[2]
   发送msc消息:
     id: com.powerinfo.pi_iroom.demo:id/iv_showMscControlMessage
-    xpath: //android.widget.RelativeLayout/android.widget.ImageView[@index=1]
+    xpath: //android.widget.RelativeLayout/android.widget.ImageView[1]
   消息窗体:
     id: com.powerinfo.pi_iroom.demo:id/et_message
   摄像头:
     id: com.powerinfo.pi_iroom.demo:id/iv_camera
-    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=0]
+    xpath: //android.widget.LinearLayout/android.widget.ImageView[0]
   闪光灯:
     id: com.powerinfo.pi_iroom.demo:id/iv_torch
-    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=1]
+    xpath: //android.widget.LinearLayout/android.widget.ImageView[1]
   美颜:
     id: com.powerinfo.pi_iroom.demo:id/iv_beauty
-    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=2]
+    xpath: //android.widget.LinearLayout/android.widget.ImageView[2]
   切换角色:
     id: com.powerinfo.pi_iroom.demo:id/iv_changeRole
-    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=3]
+    xpath: //android.widget.LinearLayout/android.widget.ImageView[3]
   切换房间:
     id: com.powerinfo.pi_iroom.demo:id/iv_changeRoom
-    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=4]
+    xpath: //android.widget.LinearLayout/android.widget.ImageView[4]
   切换房间列表:
-    xpath: //android.view.ViewGroup/android.widget.LinearLayout[@index=0]
+    xpath: //android.view.ViewGroup/android.widget.LinearLayout[0]
   切换房间列表取消:
     id: com.powerinfo.pi_iroom.demo:id/md_buttonDefaultNegative
     xpath: //android.widget.TextView[@text='CANCEL']
   离开房间:
     id: com.powerinfo.pi_iroom.demo:id/iv_back
-    xpath: //android.widget.RelativeLayout/android.widget.ImageView[@index=0]
+    xpath: //android.widget.RelativeLayout/android.widget.ImageView[0]
   上锁:
     id: com.powerinfo.pi_iroom.demo:id/iv_setLock
   推流配置信息:
@@ -142,7 +142,7 @@ iRoom_IOS:
 #    id: com.powerinfo.pi_iroom.demo:id/mBtnWhoops
   合并房间:
     id: com.powerinfo.pi_iroom.demo:id/iv_pk
-    xpath: //android.widget.RelativeLayout/android.widget.ImageView[@index=2]
+    xpath: //android.widget.RelativeLayout/android.widget.ImageView[2]
   发送msc消息:
     id: Msc
     xpath: //XCUIElementTypeButton[@name="Msc"]
@@ -163,9 +163,9 @@ iRoom_IOS:
     xpath: //XCUIElementTypeButton[@name="changeRole"]
 #  切换房间:
 #    id: com.powerinfo.pi_iroom.demo:id/iv_changeRoom
-#    xpath: //android.widget.LinearLayout/android.widget.ImageView[@index=4]
+#    xpath: //android.widget.LinearLayout/android.widget.ImageView[4]
 #  切换房间列表:
-#    xpath: //android.view.ViewGroup/android.widget.LinearLayout[@index=0]
+#    xpath: //android.view.ViewGroup/android.widget.LinearLayout[0]
 #  切换房间列表取消:
 #    id: com.powerinfo.pi_iroom.demo:id/md_buttonDefaultNegative
 #    xpath: //android.widget.TextView[@text='CANCEL']

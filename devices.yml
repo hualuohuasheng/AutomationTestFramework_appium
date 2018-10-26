@@ -8,6 +8,7 @@ oppo_R9:
   appPackage : com.powerinfo.pi_iroom.demo
   appActivity : com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
   autoAcceptAlerts : true
+  newCommandTimeout : 3600
   noReset : true
 
 meizu_Mate2 :
@@ -17,6 +18,7 @@ meizu_Mate2 :
   appPackage: com.powerinfo.pi_iroom.demo
   appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
   autoAcceptAlerts: true
+  newCommandTimeout : 3600
   noReset: true
 
 p10_268 :
@@ -26,6 +28,7 @@ p10_268 :
   appPackage: com.powerinfo.pi_iroom.demo
   appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
   autoAcceptAlerts: true
+  newCommandTimeout : 3600
   noReset: true
 
 ip5s_test8 :
