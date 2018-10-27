@@ -179,6 +179,24 @@ class iRoomTest_Android(unittest.TestCase):
 
             num += 1
 
+    def test_006参与者多次切换角色(self):
+        for driver in self.driverlist:
+            driver.find_element_by_xpath(self.控件信息['多人群聊']['xpath']).click()
+            sleep(1)
+            roomxpath = re.sub("xxxx", '4036', self.控件信息['房间列表']['xpath'])
+            pubfuc.waittimeout(driver.find_element_by_xpath(roomxpath))
+            driver.find_element_by_xpath(roomxpath).click()
+            pubfuc.waittimeout(driver.find_element_by_id(self.控件信息['JOIN']['id']))
+            driver.find_element_by_id(self.控件信息['JOIN']['id']).click()
+            sleep(3)
+        num = 1
+        while num < 301:
+            for driver in self.driverlist:
+                print(f"第{num}次切后台")
+                driver.find_element_by_id(self.控件信息['切换角色']['id']).click()
+                sleep(3)
+
+            num += 1
 
 
     def tearDown(self):
