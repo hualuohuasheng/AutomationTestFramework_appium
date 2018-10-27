@@ -31,6 +31,26 @@ p10_268 :
   newCommandTimeout : 3600
   noReset: true
 
+p10_269 :
+  platformName: Android
+  platformVersion: 8.0
+  deviceName: VGT7N17811000221
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
+p10_270 :
+  platformName: Android
+  platformVersion: 8.0
+  deviceName: VGT7N17811000262
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
 ip5s_test8 :
   platformName: IOS
   platformVersion: 11.4

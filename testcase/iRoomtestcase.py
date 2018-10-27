@@ -15,7 +15,7 @@ class iRoomTest_Android(unittest.TestCase):
     def setUp(self):
         self.控件信息 = pubfuc.获取控件文件信息()['iRoom_Android']
         #第一个为主播
-        devicelist = ['oppo_R9','p10_268']
+        devicelist = ['oppo_R9','p10_270','p10_269']
         self.sd = pubfuc.StartDriver(devicelist)
 
         self.proc_list = []
@@ -139,6 +139,46 @@ class iRoomTest_Android(unittest.TestCase):
             print(f"第{num}次切后台")
             self.driverlist[1].background_app(15)
             num += 1
+
+
+    def test_004参与者多次加入离开指导房间(self):
+        num = 1
+        while num < 101:
+            for driver in self.driverlist:
+                print(f"第{num}次,{driver}加入房间")
+                if num == 1:
+                    driver.find_element_by_xpath(self.控件信息['多人群聊']['xpath']).click()
+                    sleep(1)
+                roomxpath = re.sub("xxxx", '4033', self.控件信息['房间列表']['xpath'])
+                pubfuc.waittimeout(driver.find_element_by_xpath(roomxpath))
+                driver.find_element_by_xpath(roomxpath).click()
+                pubfuc.waittimeout(driver.find_element_by_id(self.控件信息['JOIN']['id']))
+                driver.find_element_by_id(self.控件信息['JOIN']['id']).click()
+                sleep(2)
+            for driver in self.driverlist:
+                driver.find_element_by_id(self.控件信息['离开房间']['id']).click()
+                sleep(2)
+            num += 1
+
+    def test_005参与者多次切后台(self):
+        for driver in self.driverlist:
+            driver.find_element_by_xpath(self.控件信息['多人群聊']['xpath']).click()
+            sleep(1)
+            roomxpath = re.sub("xxxx", '4036', self.控件信息['房间列表']['xpath'])
+            pubfuc.waittimeout(driver.find_element_by_xpath(roomxpath))
+            driver.find_element_by_xpath(roomxpath).click()
+            pubfuc.waittimeout(driver.find_element_by_id(self.控件信息['JOIN']['id']))
+            driver.find_element_by_id(self.控件信息['JOIN']['id']).click()
+            sleep(3)
+        num = 1
+        while num < 301:
+            for driver in self.driverlist:
+                sleep(1)
+                print(f"第{num}次切后台")
+                driver.background_app(5)
+
+            num += 1
+
 
 
     def tearDown(self):
