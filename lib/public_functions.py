@@ -117,7 +117,9 @@ class StartDriver():
         # print(uidkey)
         excute_cmd = f"{excute_cmd_base} -p {self.aport[i]} {deviceport} -U {self.realdevice[i][uidkey]} --local-timezone --log-timestamp --command-timeout 3000"
 
-        subprocess.Popen(excute_cmd,shell=True,stdout=open(f"/Users/liminglei/Desktop/appium/appiumlog_{self.realdevice[i][uidkey]}.txt",'w+'))
+        appiumlogpath = '/Users/liminglei/Desktop/appium/' if 'mac' in 获取当前系统() else 'd:/'
+
+        subprocess.Popen(excute_cmd,shell=True,stdout=open(f"{appiumlogpath}appiumlog_{self.realdevice[i][uidkey]}.txt",'w+'))
 
         time.sleep(5)
 
@@ -129,7 +131,7 @@ class StartDriver():
             if 'mac' in 获取当前系统():
                 cmd = f'lsof -i:{self.aport[i]}'
             else:
-                cmd = f'netstate -ano|findstr {self.aport[i]}'
+                cmd = f'netstat -ano|findstr {self.aport[i]}'
             getportused = subprocess.getoutput(cmd)
             info = getportused.split('\n')
             if len(info) > 1:
