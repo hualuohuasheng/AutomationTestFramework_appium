@@ -109,7 +109,11 @@ class StartDriver():
 
     def startAppiumServer(self,i):
         appium_env = os.environ['APPIUM']
-        excute_cmd_base = f"node {appium_env}/Resources/app/node_modules/appium/build/lib/main.js -a 127.0.0.1"
+        是否mac系统 = 'mac' in 获取当前系统()
+        if 是否mac系统:
+            excute_cmd_base = f"node {appium_env}/Resources/app/node_modules/appium/build/lib/main.js -a 127.0.0.1"
+        else:
+            excute_cmd_base = f"node {appium_env}\\Resources\\app\\node_modules\\appium\\build\\lib\\main.js -a 127.0.0.1"
         print(excute_cmd_base)
         uidkey = 'udid' if 'IOS' in self.realdevice[i]['platformName'] else 'deviceName'
 
@@ -117,7 +121,7 @@ class StartDriver():
         # print(uidkey)
         excute_cmd = f"{excute_cmd_base} -p {self.aport[i]} {deviceport} -U {self.realdevice[i][uidkey]} --local-timezone --log-timestamp --command-timeout 3000"
 
-        appiumlogpath = '/Users/liminglei/Desktop/appium/' if 'mac' in 获取当前系统() else 'd:/'
+        appiumlogpath = '/Users/liminglei/Desktop/appium/' if 是否mac系统 else 'd:/'
 
         subprocess.Popen(excute_cmd,shell=True,stdout=open(f"{appiumlogpath}appiumlog_{self.realdevice[i][uidkey]}.txt",'w+'))
 
