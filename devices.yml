@@ -161,3 +161,13 @@ ip5_test4 :
   udid: 2e739c10ce9ce8f75c18ae7b0621231ebbbf23b1
   autoAcceptAlerts: true
   noReset: true
+
+ip6_test17 :
+  platformName: IOS
+  platformVersion: 12.0
+  deviceName: IPhone
+  automationName: XCUITest
+  bundleId: com.powerinfo.iRoom
+  udid: f85f4d02a4f8b68cf84fc8372a51707e1a332c38
+  autoAcceptAlerts: true
+  noReset: true
