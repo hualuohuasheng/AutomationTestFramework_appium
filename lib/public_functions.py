@@ -108,12 +108,9 @@ class StartDriver():
 
 
     def startAppiumServer(self,i):
-
-        if 'mac' in 获取当前系统():
-            excute_cmd_base = "node /Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js -a 127.0.0.1"
-        else:
-            excute_cmd_base = "appium -a 127.0.0.1"
-
+        appium_env = os.environ['APPIUM']
+        excute_cmd_base = f"node {appium_env}/Resources/app/node_modules/appium/build/lib/main.js -a 127.0.0.1"
+        print(excute_cmd_base)
         uidkey = 'udid' if 'IOS' in self.realdevice[i]['platformName'] else 'deviceName'
 
         deviceport = f'--webdriveragent-port {self.iosport[i]}' if 'IOS' in self.realdevice[i]['platformName'] else f'-bp {self.bport[i]}'

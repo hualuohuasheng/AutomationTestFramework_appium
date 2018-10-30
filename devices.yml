@@ -1,7 +1,7 @@
 ---
 ### 手机设备信息
 
-oppo_R9:
+oppo_R9 :
   platformName : Android
   platformVersion : 5.1
   deviceName : 8SCM65OZ99999999
@@ -51,6 +51,67 @@ p10_270 :
   newCommandTimeout : 3600
   noReset: true
 
+p9 :
+  platformName: Android
+  platformVersion: 8.0
+  deviceName: PBV0216801001067
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
+
+p6 :
+  platformName: Android
+  platformVersion: 4.4.2
+  deviceName: 022AUM7N49004464
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout: 3600
+  noReset: true
+
+vivo_x9 :
+  platformName : Android
+  platformVersion : 7.1.2
+  deviceName : 7a4aca78
+  appPackage : com.powerinfo.pi_iroom.demo
+  appActivity : com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts : true
+  newCommandTimeout : 3600
+  noReset : true
+
+sony :
+  platformName: Android
+  platformVersion: 8.0
+  deviceName: YT910PRT1A
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
+sm-s4 :
+  platformName: Android
+  platformVersion: 8.0
+  deviceName: 34a7b664
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
+meizu-pro7 :
+  platformName: Android
+  platformVersion: 8.0
+  deviceName: 79BQADR6FCQW8
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
 ip5s_test8 :
   platformName: IOS
   platformVersion: 11.4
@@ -78,5 +139,25 @@ ip6s_test13 :
   automationName: XCUITest
   bundleId: com.powerinfo.iRoom
   udid: fbbfdbd132f5560dca7e3feb08c18b9e9060a3e2
+  autoAcceptAlerts: true
+  noReset: true
+
+ip7 :
+  platformName: IOS
+  platformVersion: 12.0
+  deviceName: IPhone
+  automationName: XCUITest
+  bundleId: com.powerinfo.iRoom
+  udid: 4c7fe13f7859821130dbc4b7509f161e0b059f6e
+  autoAcceptAlerts: true
+  noReset: true
+
+ip5_test4 :
+  platformName: IOS
+  platformVersion: 10.3.3
+  deviceName: IPhone
+  automationName: XCUITest
+  bundleId: com.powerinfo.iRoom
+  udid: 2e739c10ce9ce8f75c18ae7b0621231ebbbf23b1
   autoAcceptAlerts: true
   noReset: true

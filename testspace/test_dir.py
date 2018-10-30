@@ -73,5 +73,3 @@ print(info['liveme']['开播'])
 # # time.sleep(15)
 # proc.terminate()
 
-for i in range(5):
-    print(i)

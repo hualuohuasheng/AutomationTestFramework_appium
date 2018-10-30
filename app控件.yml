@@ -121,7 +121,7 @@ iRoom_IOS:
     id: 多人群聊
     xpath: //XCUIElementTypeStaticText[@name='多人群聊']
   房间列表:
-    xpath: //XCUIElementTypeStaticText[@name='RoomID :xxxx']
+    xpath: //XCUIElementTypeStaticText[@name='RoomId :xxxx']
   创建房间:
     id: start
     xpath: //XCUIElementTypeButton[@name="start"] #加号
