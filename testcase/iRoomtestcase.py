@@ -22,7 +22,7 @@ class iRoomTest_Android(unittest.TestCase):
 
         print(self.proc_list)
         for i in range(len(self.sd.devicelist)):
-            cmd = f"lsof -i:{self.sd.aport[i]}"
+            cmd = f"lsof -i:{self.sd.aport[i]}" if 'mac' in pubfuc.获取当前系统() else f"netstat -ano|findstr {self.sd.aport[i]}"
             nodeproc = subprocess.getoutput(cmd)
             if f"localhost:{self.sd.aport[i]}" in nodeproc:
                 procport = re.split('\s+',nodeproc.split('\n')[1])[1]
