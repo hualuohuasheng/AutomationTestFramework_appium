@@ -135,8 +135,9 @@ class StartDriver():
                 cmd = f'netstat -ano|findstr {self.aport[i]}'
             getportused = subprocess.getoutput(cmd)
             info = getportused.split('\n')
-            if len(info) > 1:
-                pidlist.append(re.split('\s+',info[1])[1])
+            if f':{self.aport[i]}' in getportused:
+                pid = re.split('\s+', info[1])[1] if 'mac' in 获取当前系统() else re.split('\s+', info[0])[-1]
+                pidlist.append(pid)
 
         # print(pidlist)
         return pidlist

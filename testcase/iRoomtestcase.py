@@ -19,15 +19,17 @@ class iRoomTest_Android(unittest.TestCase):
         self.sd = pubfuc.StartDriver(devicelist)
 
         self.proc_list = []
+        是否mac = 'mac' in pubfuc.获取当前系统()
 
         print(self.proc_list)
         for i in range(len(self.sd.devicelist)):
-            cmd = f"lsof -i:{self.sd.aport[i]}" if 'mac' in pubfuc.获取当前系统() else f"netstat -ano|findstr {self.sd.aport[i]}"
+            cmd = f"lsof -i:{self.sd.aport[i]}" if 是否mac else f"netstat -ano|findstr {self.sd.aport[i]}"
             nodeproc = subprocess.getoutput(cmd)
-            if f"localhost:{self.sd.aport[i]}" in nodeproc:
-                procport = re.split('\s+',nodeproc.split('\n')[1])[1]
-                print(procport)
-                subprocess.Popen(f'kill {procport}',shell=True)
+            if f":{self.sd.aport[i]}" in nodeproc:
+                info = nodeproc.split('\n')
+                procport = re.split('\s+', info[1])[1] if 是否mac else re.split('\s+', info[0])[-1]
+                cmd_kill = f'kill {procport}' if 是否mac else f'taskkill /F /PID {procport}'
+                subprocess.Popen(cmd_kill, shell=True)
             self.proc_list.append(multiprocessing.Process(target=self.sd.startAppiumServer, args=(i,)))
 
         print(self.proc_list)
@@ -149,7 +151,7 @@ class iRoomTest_Android(unittest.TestCase):
                 if num == 1:
                     driver.find_element_by_xpath(self.控件信息['多人群聊']['xpath']).click()
                     sleep(1)
-                roomxpath = re.sub("xxxx", '4099', self.控件信息['房间列表']['xpath'])
+                roomxpath = re.sub("xxxx", '4021', self.控件信息['房间列表']['xpath'])
                 pubfuc.waittimeout(driver.find_element_by_xpath(roomxpath))
                 driver.find_element_by_xpath(roomxpath).click()
                 pubfuc.waittimeout(driver.find_element_by_id(self.控件信息['JOIN']['id']))
