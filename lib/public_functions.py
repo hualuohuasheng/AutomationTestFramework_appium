@@ -124,8 +124,13 @@ class StartDriver():
     def getNodeProcPid(self):
 
         pidlist = []
+
         for i in range(len(self.devicelist)):
-            getportused = subprocess.getoutput(f'lsof -i:{self.aport[i]}')
+            if 'mac' in 获取当前系统():
+                cmd = f'lsof -i:{self.aport[i]}'
+            else:
+                cmd = f'netstate -ano|findstr {self.aport[i]}'
+            getportused = subprocess.getoutput(cmd)
             info = getportused.split('\n')
             if len(info) > 1:
                 pidlist.append(re.split('\s+',info[1])[1])
