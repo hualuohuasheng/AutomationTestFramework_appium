@@ -102,6 +102,7 @@ class StartDriver():
         设备信息 = 获取控件文件信息('devices')
         self.aport = list(range(4723, 4800, 2))
         self.bport = list(range(4724, 4800, 2))
+        self.iosport = list(range(8100,8200,2))
         self.devicelist = devicelist
         self.realdevice = [设备信息[device] for device in devicelist]
 
@@ -114,8 +115,10 @@ class StartDriver():
             excute_cmd_base = "appium -a 127.0.0.1"
 
         uidkey = 'udid' if 'IOS' in self.realdevice[i]['platformName'] else 'deviceName'
+
+        deviceport = f'--webdriveragent-port {self.iosport[i]}' if 'IOS' in self.realdevice[i]['platformName'] else f'-bp {self.bport[i]}'
         # print(uidkey)
-        excute_cmd = f"{excute_cmd_base} -p {self.aport[i]} -bp {self.bport[i]} -U {self.realdevice[i][uidkey]} --local-timezone --log-timestamp --command-timeout 3000"
+        excute_cmd = f"{excute_cmd_base} -p {self.aport[i]} {deviceport} -U {self.realdevice[i][uidkey]} --local-timezone --log-timestamp --command-timeout 3000"
 
         subprocess.Popen(excute_cmd,shell=True,stdout=open(f"/Users/liminglei/Desktop/appium/appiumlog_{self.realdevice[i][uidkey]}.txt",'w+'))
 
