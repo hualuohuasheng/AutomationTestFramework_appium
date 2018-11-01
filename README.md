@@ -2,13 +2,23 @@
 
 基于appium的移动端自动化测试平台，执行测试任务，测试结果截图，生成测试报告并发送邮件
 
+## 环境配置说明
+- 1、安装appium-desktop版本，安装后查看安装目录，增加【APPIUM】的环境变量，值为resources所在的目录
+    mac:`/Applications/Appium.app/Contents`;
+    windows下appium安装目录有空格后需复制到其他目录下，并且必须在系统变量中添加:`C:\appium\`
+- 2、安装jdk，配置JAVA_HOME变量
+- 3、安装node，安装完成后自动添加到环境变量
+- 4、在命令行终端中，可以使用`shell liminglei$ node /Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js -a 127.0.0.1 -p4723 `启动appium server说明appium server相关配置正确
+
+
+
 ## 使用说明
 
 - 1、在devices.yml文件中查看要进行自动化的手机相关配置，如果此文件中没有相关配置，复制模板后修改系统版本、uid即可
 - 2、在iRoomtestcase.py文件中有2个class，分别为安卓和ios，更改setUp中的devicelist参数，
     将进行自动化手机添加到devicelist参数中，填入的名字为devices.yml中的配置名称 `devicelist = ['sony','meizu-pro7']`
-- 3、在iRoomtestcase文件中每个class的后3个case，需要另外一台手机先创建好房间，然后把房间号修改用例中相关
-    `roomxpath = re.sub("xxxx", '4021', self.控件信息['房间列表']['xpath'])`
+- 3、在iRoomtestcase文件中有3个case，需要另外一台手机先创建好房间，然后把房间号修改用例中相关
+    `proc = pool.apply_async(加入离开房间,(driver,'4531',))`
 - 4、在suite_singletest.py文件中输入要运行的test,可填入1个或多个
 - 5、运行suite_singletest.py文件即可
 

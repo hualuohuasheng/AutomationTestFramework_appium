@@ -64,7 +64,7 @@ def 切换角色(driver,roomid):
     sleep(10)
     num = 1
     while num < 301:
-        print(f"第{num}次{driver}切后台")
+        print(f"第{num}次{driver}切换角色")
         driver.find_element_by_id(控件信息['切换角色']['id']).click()
         sleep(5)
         num += 1

@@ -143,7 +143,7 @@ class StartDriver():
         # print(uidkey)
         excute_cmd = f"{excute_cmd_base} -p {self.aport[i]} {deviceport} -U {self.realdevice[i][uidkey]} --local-timezone --log-timestamp --command-timeout 3000"
 
-        appiumlogpath = '/Users/liminglei/Desktop/appium/' if 是否mac系统 else 'd:/'
+        appiumlogpath = '/Users/liminglei/Desktop/appium/' if 是否mac系统 else 'c:/'
 
         subprocess.Popen(excute_cmd,shell=True,stdout=open(f"{appiumlogpath}appiumlog_{self.realdevice[i][uidkey]}.txt",'w+'))
 
