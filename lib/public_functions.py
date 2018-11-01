@@ -6,6 +6,7 @@ from pathlib import Path
 import yaml
 import platform
 import multiprocessing
+from appium import webdriver
 
 def 获取当前系统():
     systeminfo = platform.platform()
@@ -34,6 +35,30 @@ def 启动appium_server(udid,port=4723):
 
     subprocess.Popen()
     print(excute_cmd)
+
+def cleanNodeProcess():
+    是否mac = 'mac' in 获取当前系统()
+    if 是否mac:
+        execute_cmd = 'ps -A|grep node'
+        cmd_res = subprocess.getoutput(execute_cmd)
+        for res in cmd_res.split('\n'):
+            if 'node /' in res:
+                print(res)
+                pid = re.split('\s+', res)[0]
+                print(pid)
+                kill_cmd = f'kill {pid}'
+                kill_res = subprocess.getoutput(kill_cmd)
+                print(kill_res)
+    else:
+        execute_cmd = 'tasklist|findstr node'
+        cmd_res = subprocess.getoutput(execute_cmd)
+        for res in cmd_res.split('\n'):
+            if 'node.exe' in res:
+                pid = re.split('\s+', res)[1]
+                # print(pid)
+                kill_cmd = f'taskkill /F /PID {pid}'
+                kill_res = subprocess.getoutput(kill_cmd)
+                print(kill_res)
 
 
 def waittimeout(element,timeout=10):
@@ -111,7 +136,7 @@ class StartDriver():
         appium_env = os.environ['APPIUM']
         是否mac系统 = 'mac' in 获取当前系统()
         excute_cmd_base = f"node {appium_env}/Resources/app/node_modules/appium/build/lib/main.js -a 127.0.0.1"
-        print(excute_cmd_base)
+        # print(excute_cmd_base)
         uidkey = 'udid' if 'IOS' in self.realdevice[i]['platformName'] else 'deviceName'
 
         deviceport = f'--webdriveragent-port {self.iosport[i]}' if 'IOS' in self.realdevice[i]['platformName'] else f'-bp {self.bport[i]}'
@@ -160,5 +185,4 @@ def startMultAppiumServer(sd):
 
     for pro in proc_list:
         pro.join()
-
 

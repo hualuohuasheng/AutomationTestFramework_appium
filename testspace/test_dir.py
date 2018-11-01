@@ -6,7 +6,7 @@ import re
 import subprocess
 import platform
 
-print(platform.platform())
+# print(platform.platform())
 
 # 获取当前目录
 # print(os.getcwd())
@@ -14,7 +14,7 @@ print(platform.platform())
 # print(Path.cwd())
 
 # 获取上级目录
-print(os.name)
+# print(os.name)
 
 # print(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 # print(os.path.abspath(os.path.dirname(os.getcwd())))
@@ -72,4 +72,8 @@ print(info['liveme']['开播'])
 # proc.join()
 # # time.sleep(15)
 # proc.terminate()
+
+
+
+import logging
 

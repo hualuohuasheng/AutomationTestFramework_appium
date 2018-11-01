@@ -1,6 +1,6 @@
 ---
 ### 手机设备信息
-
+### 安卓手机
 oppo_R9 :
   platformName : Android
   platformVersion : 5.1
@@ -102,15 +102,7 @@ sm-s4 :
   newCommandTimeout : 3600
   noReset: true
 
-meizu-pro7 :
-  platformName: Android
-  platformVersion: 8.0
-  deviceName: 79BQADR6FCQW8
-  appPackage: com.powerinfo.pi_iroom.demo
-  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
-  autoAcceptAlerts: true
-  newCommandTimeout : 3600
-  noReset: true
+### iPhone手机
 
 ip5s_test8 :
   platformName: IOS
