@@ -14,6 +14,8 @@
 
 ## 使用说明
 
+**iPhone手机的自动化必须使用mac电脑**
+
 - 1、在devices.yml文件中查看要进行自动化的手机相关配置，如果此文件中没有相关配置，复制模板后修改系统版本、uid即可
 - 2、在iRoomtestcase.py文件中有2个class，分别为安卓和ios，更改setUp中的devicelist参数，
     将进行自动化手机添加到devicelist参数中，填入的名字为devices.yml中的配置名称 `devicelist = ['sony','meizu-pro7']`
