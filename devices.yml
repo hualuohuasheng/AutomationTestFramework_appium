@@ -51,6 +51,27 @@ p10_270 :
   newCommandTimeout : 3600
   noReset: true
 
+p10_294 :
+  platformName: Android
+  platformVersion: 8.0
+  deviceName: VGT7N17818000695
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
+vivoX9 :
+  platformName: Android
+  platformVersion: 7.1.2
+  deviceName: 7a4aca78
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
+
 p9 :
   platformName: Android
   platformVersion: 8.0
@@ -61,6 +82,25 @@ p9 :
   newCommandTimeout : 3600
   noReset: true
 
+hwmate7 :
+  platformName: Android
+  platformVersion: 6.0
+  deviceName: Y9KGL16307900425
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
+pixel :
+  platformName: Android
+  platformVersion: 8.1.0
+  deviceName: FA68K0303265
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
 
 p6 :
   platformName: Android
@@ -82,25 +122,6 @@ vivo_x9 :
   newCommandTimeout : 3600
   noReset : true
 
-sony :
-  platformName: Android
-  platformVersion: 8.0
-  deviceName: YT910PRT1A
-  appPackage: com.powerinfo.pi_iroom.demo
-  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
-  autoAcceptAlerts: true
-  newCommandTimeout : 3600
-  noReset: true
-
-sm-s4 :
-  platformName: Android
-  platformVersion: 8.0
-  deviceName: 34a7b664
-  appPackage: com.powerinfo.pi_iroom.demo
-  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
-  autoAcceptAlerts: true
-  newCommandTimeout : 3600
-  noReset: true
 
 ### iPhone返字
 
@@ -162,4 +183,17 @@ ip6_test17 :
   bundleId: com.powerinfo.iRoom
   udid: f85f4d02a4f8b68cf84fc8372a51707e1a332c38
   autoAcceptAlerts: true
+  noReset: true
+
+### 怩処返字
+
+
+sm_s4 :
+  platformName: Android
+  platformVersion: 4.4.4
+  deviceName: 34a7b664
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
   noReset: true
