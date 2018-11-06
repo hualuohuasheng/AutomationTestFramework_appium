@@ -75,5 +75,8 @@ print(info['liveme']['开播'])
 
 
 
-import logging
+import time
 
+print(time.time())
+print(time.ctime())
+print(time.strftime('%Y-%m-%d-%H:%M:%S',time.localtime()))

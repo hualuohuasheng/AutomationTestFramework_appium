@@ -43,17 +43,17 @@ def cleanNodeProcess():
         cmd_res = subprocess.getoutput(execute_cmd)
         for res in cmd_res.split('\n'):
             if 'node /' in res:
-                print(res)
+                # print(res)
                 pid = re.split('\s+', res)[0]
-                print(pid)
+                # print(pid)
                 kill_cmd = f'kill {pid}'
                 kill_res = subprocess.getoutput(kill_cmd)
-                print(kill_res)
+                # print(kill_res)
     else:
         execute_cmd = 'tasklist|findstr node'
         cmd_res = subprocess.getoutput(execute_cmd)
         for res in cmd_res.split('\n'):
-            if 'node.exe' in res:
+            while 'node.exe' in res:
                 pid = re.split('\s+', res)[1]
                 # print(pid)
                 kill_cmd = f'taskkill /F /PID {pid}'
@@ -66,7 +66,9 @@ def waittimeout(element,timeout=10):
     while begintime + timeout > time.time():
         if element is not None:
             break
-
+def getLocalTime():
+    loctime = time.strftime('%Y-%m-%d-%H:%M:%S', time.localtime())
+    return loctime
 
 def get_android_app_info(app="iRoom"):
 

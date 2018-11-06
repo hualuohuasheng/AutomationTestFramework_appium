@@ -122,6 +122,16 @@ p6 :
   newCommandTimeout: 3600
   noReset: true
 
+huashuo_ASUS_T00J :
+  platformName: Android
+  platformVersion: 4.4.2
+  deviceName: EAAZCY16B777
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout: 3600
+  noReset: true
+
 
 ### iPhoneÊÖ»ú
 
@@ -142,6 +152,16 @@ ip5s_test5 :
   automationName: XCUITest
   bundleId: com.powerinfo.iRoom
   udid: 91dec87e885bafe2c956f9b593695517f4c33528
+  autoAcceptAlerts: true
+  noReset: true
+
+ip6s_test12 :
+  platformName: IOS
+  platformVersion: 11.4.1
+  deviceName: IPhone
+  automationName: XCUITest
+  bundleId: com.powerinfo.iRoom
+  udid: fbbfdbd132f5560dca7e3feb08c18b9e9060a3e2
   autoAcceptAlerts: true
   noReset: true
 

@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from iRoomtestcase import PowerinfoILiveTest
+from iRoomtestcase import iRoomTest
 import unittest
 
 
