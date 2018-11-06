@@ -21,6 +21,16 @@ meizu_Mate2 :
   newCommandTimeout : 3600
   noReset: true
 
+p10_267 :
+  platformName: Android
+  platformVersion: 8.0
+  deviceName: VGT7N17818000730
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
 p10_268 :
   platformName: Android
   platformVersion: 8.0
@@ -111,16 +121,6 @@ p6 :
   autoAcceptAlerts: true
   newCommandTimeout: 3600
   noReset: true
-
-vivo_x9 :
-  platformName : Android
-  platformVersion : 7.1.2
-  deviceName : 7a4aca78
-  appPackage : com.powerinfo.pi_iroom.demo
-  appActivity : com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
-  autoAcceptAlerts : true
-  newCommandTimeout : 3600
-  noReset : true
 
 
 ### iPhoneÊÖ»ú
