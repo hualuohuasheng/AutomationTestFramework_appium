@@ -42,11 +42,11 @@ def cleanNodeProcess():
         execute_cmd = 'ps -A|grep node'
         cmd_res = subprocess.getoutput(execute_cmd)
         for res in cmd_res.split('\n'):
+            print(res)
             if 'node /' in res:
-                # print(res)
-                pid = re.split('\s+', res)[0]
-                # print(pid)
-                kill_cmd = f'kill {pid}'
+                pid = re.split('\s+', res.strip())[0]
+                print(pid)
+                kill_cmd = f'kill -9 {pid}'
                 kill_res = subprocess.getoutput(kill_cmd)
                 # print(kill_res)
     else:
@@ -187,4 +187,3 @@ def startMultAppiumServer(sd):
 
     for pro in proc_list:
         pro.join()
-
