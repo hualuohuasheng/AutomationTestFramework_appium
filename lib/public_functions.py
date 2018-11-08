@@ -7,6 +7,46 @@ import yaml
 import platform
 import multiprocessing
 from appium import webdriver
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+
+def send_mail(receivers,message):
+    mail_host = "mail.sjdd.com.cn"
+    mail_user = 'liml@sjdd.com.cn'
+    mail_pass = 'sjdd1234'
+
+    sender = 'liml@sjdd.com.cn'
+
+    parsreceivers = [f'{name}@sjdd.com.cn' for name in receivers]
+    with open(message,'rb') as f:
+        body = f.read()
+
+    message = MIMEMultipart()
+    message['Subject'] = '自动化测试结果'
+    message['From'] = sender
+    mail_body = body
+
+    message.attach(MIMEText(mail_body, 'html', 'utf-8'))
+    puretext = MIMEText(mail_host)
+    try:
+        # smtpObj = smtplib.SMTP()
+        # smtpObj.connect(mail_host,25)
+        smtpObj = smtplib.SMTP_SSL(mail_host, 465)
+        smtpObj.login(mail_user, mail_pass)
+        smtpObj.sendmail(sender, parsreceivers, message.as_string())
+        smtpObj.quit()
+        print('success')
+    except smtplib.SMTPException as e:
+        print('error:', e.args)
+
+def get_real_dir_path(path,paths = ''):
+    curdir = os.path.dirname(path)
+    if paths is None:
+        return curdir
+    else:
+        return os.path.abspath(os.path.join(curdir,paths))
 
 def 获取当前系统():
     systeminfo = platform.platform()

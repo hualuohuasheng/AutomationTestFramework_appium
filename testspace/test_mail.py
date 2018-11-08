@@ -2,22 +2,23 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-mail_host = "smtp.qq.com"
-mail_user = '1145930174'
+mail_host = "mail.sjdd.com.cn"
+mail_user = 'liml@sjdd.com.cn'
 
-mail_pass = 'brpsxxyupgqohfif'
+mail_pass = 'sjdd1234'
 
-sender = '1145930174@qq.com'
+sender = 'liml@sjdd.com.cn'
 
 receivers = ['liml@sjdd.com.cn']
 
-with open(f'F:/1/Test_TestStringMethods_2018-08-23_16-53-14.html','rb') as f:
-    mail_body = f.read()
+# with open(f'F:/1/Test_TestStringMethods_2018-08-23_16-53-14.html','rb') as f:
+#     mail_body = f.read()
 
 message = MIMEMultipart()
-message['Subject'] = 'title'
+message['Subject'] = '自动化测试结果'
 message['From'] = sender
 message['To'] = receivers[0]
+mail_body = '123'
 
 message.attach(MIMEText(mail_body,'html','utf-8'))
 
@@ -32,5 +33,5 @@ try:
     smtpObj.quit()
     print('success')
 except smtplib.SMTPException as e:
-    print('error',e)
+    print('error:',e.args)
     

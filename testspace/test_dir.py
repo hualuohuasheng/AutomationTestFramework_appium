@@ -20,12 +20,12 @@ import platform
 # print(os.path.abspath(os.path.dirname(os.getcwd())))
 # print(os.path.abspath(os.path.join(os.getcwd(),'..')))
 
-fn = Path(__file__)
-print(fn.name)
-print(fn.suffix)
-print(fn.stem)
-
-print(Path(__file__).cwd().parent)
+# fn = Path(__file__)
+# print(fn.name)
+# print(fn.suffix)
+# print(fn.stem)
+#
+# print(Path(__file__).cwd().parent)
 
 # p = subprocess.getoutput('adb devices')
 # print(p)
@@ -43,17 +43,17 @@ print(Path(__file__).cwd().parent)
 
 # print(info)
 
-filepath = Path(__file__).cwd().parent / 'app控件.yml'
+# filepath = Path(__file__).cwd().parent / 'app控件.yml'
 
-print(filepath)
+# print(filepath)
 
-import yaml
-
-with open(filepath, 'r', encoding='gbk') as fs:
-    info = yaml.load(fs)
-
-print(info)
-print(info['liveme']['开播'])
+# import yaml
+#
+# with open(filepath, 'r', encoding='gbk') as fs:
+#     info = yaml.load(fs)
+#
+# print(info)
+# print(info['liveme']['开播'])
 
 # from multiprocessing import Process,Pool
 # import subprocess
@@ -80,3 +80,58 @@ import time
 print(time.time())
 print(time.ctime())
 print(time.strftime('%Y-%m-%d-%H:%M:%S',time.localtime()))
+sd = os.path.join(os.getcwd(),'..')
+print(os.path.dirname(__file__))
+print(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+def add(a, b):
+    return a+b
+
+def minus(a, b):
+    return a-b
+
+def multi(a, b):
+    return a*b
+
+def divide(a, b):
+    return a/b
+
+import myunittest
+
+
+class TestMathFunc(myunittest.TestCase):
+    """Test mathfuc.py"""
+
+    def setUp(self):
+        print(1)
+
+    def test_add(self):
+        """Test method add(a, b)"""
+        self.assertEqual(3, add(1, 2))
+        self.assertNotEqual(3, add(2, 2))
+
+    def test_minus(self):
+        """Test method minus(a, b)"""
+        self.assertEqual(1, minus(3, 2))
+
+    def test_multi(self):
+        """Test method multi(a, b)"""
+        self.assertEqual(6, multi(2, 3))
+
+    def test_divide(self):
+        """Test method divide(a, b)"""
+        self.assertEqual(2, divide(6, 3))
+        self.assertEqual(2.5, divide(5, 2))
+
+    def tearDown(self):
+        print('clean')
+
+import HtmlTestRunner
+# if __name__ == '__main__':
+#     suite = myunittest.TestSuite()
+#
+#     tests = [TestMathFunc("test_add")]
+#     suite.addTests(tests)
+#
+#     runner = myunittest.TextTestRunner(verbosity=2)
+#     runner.run(suite)

@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 import sys,re,subprocess,traceback
-sys.path.append('..')
+# sys.path.append('..')
 
 from time import sleep
-import unittest
+import unittest,myunittest
 import lib.public_functions as pubfuc
 from pathlib import Path
 import multiprocessing
@@ -12,47 +12,56 @@ from appium.webdriver.common.touch_action import TouchAction
 
 
 def 加入离开房间(driver,roomid):
-    try:
-        控件文件 = pubfuc.获取控件文件信息()
-        print(driver.desired_capabilities)
-        devicedriverinfo = driver.desired_capabilities
-        isIOS = 'desired' not in devicedriverinfo
-        if isIOS:
-            控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['platformName'])]
-            deviceid = devicedriverinfo['udid']
-        else:
-            控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['desired']['platformName'])]
-            deviceid = devicedriverinfo['desired']['deviceName']
-        num = 1
-        roomid = f' {roomid}' if isIOS else roomid
-        while num < 201:
-            if num == 1:
-                sleep(1)
-                print(driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).get_attribute('enabled'))
-                driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).click()
+    failcount = 1# 用例中出错后重新执行的次数
+    runcount = 1
+    success_flag = True
+    num = 1
+    while success_flag:
+        try:
+            if runcount > failcount:
+                success_flag = False
+            控件文件 = pubfuc.获取控件文件信息()
+            print(driver.desired_capabilities)
+            devicedriverinfo = driver.desired_capabilities
+            isIOS = 'desired' not in devicedriverinfo
+            if isIOS:
+                控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['platformName'])]
+                deviceid = devicedriverinfo['udid']
+            else:
+                控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['desired']['platformName'])]
+                deviceid = devicedriverinfo['desired']['deviceName']
+            roomid = f' {roomid}' if isIOS else roomid
+            while num < 201:
+                if num == 1:
+                    sleep(1)
+                    print(driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).get_attribute('enabled'))
+                    driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).click()
+                    sleep(5)
+                roomxpath = re.sub("xxxx", roomid, 控件信息['房间列表']['xpath'])
+                driver.find_element_by_xpath(roomxpath).click()
+                print(f"第{num}次{driver}加入房间")
+                # pubfuc.waittimeout(driver.find_element_by_id(控件信息['JOIN']['id']))
                 sleep(5)
-            roomxpath = re.sub("xxxx", roomid, 控件信息['房间列表']['xpath'])
-            driver.find_element_by_xpath(roomxpath).click()
-            print(f"第{num}次{driver}加入房间")
-            # pubfuc.waittimeout(driver.find_element_by_id(控件信息['JOIN']['id']))
-            sleep(5)
-            if not driver.find_element_by_id(控件信息['JOIN']['id']).get_attribute('enabled'):
-                sleep(5)
-            driver.find_element_by_id(控件信息['JOIN']['id']).click()
-            sleep(15)
-            print(driver.find_element_by_id(控件信息['离开房间']['id']).get_attribute('enabled'))
-            driver.find_element_by_id(控件信息['离开房间']['id']).click()
-            sleep(10)
-            print(f"第{num}次{driver}离开房间")
-            num += 1
-    except Exception as e:
-        loctime = pubfuc.getLocalTime()
-        print(deviceid)
-        img_file = Path(__file__).cwd().parent / 'screen' / f'{loctime}-{deviceid}.png'
-        driver.save_screenshot(str(img_file))
-        sleep(3)
-        print(e.args[0])
-        traceback.print_exc()
+                if not driver.find_element_by_id(控件信息['JOIN']['id']).get_attribute('enabled'):
+                    sleep(5)
+                driver.find_element_by_id(控件信息['JOIN']['id']).click()
+                sleep(15)
+                print(driver.find_element_by_id(控件信息['离开房间']['id']).get_attribute('enabled'))
+                driver.find_element_by_id(控件信息['离开房间']['id']).click()
+                sleep(6)
+                num += 1
+        except Exception as e:
+            loctime = pubfuc.getLocalTime()
+            print(deviceid,loctime)
+            img_file = Path(__file__).cwd().parent / 'screen' / f'{loctime}-{deviceid}.png'
+            driver.save_screenshot(str(img_file))
+            sleep(3)
+            print(e.args[0])
+            traceback.print_exc()
+            runcount += 1
+            driver.close_app()
+            driver.launch_app()
+            num = 1
 
 def 切换角色(driver,roomid):
     try:
@@ -94,6 +103,7 @@ def 切换角色(driver,roomid):
         sleep(3)
         print(e.args[0])
         traceback.print_exc()
+        driver.close()
 
 
 def 切后台(driver,roomid):
@@ -147,7 +157,7 @@ class iRoomTest(unittest.TestCase):
     def setUp(self):
         self.控件信息 = pubfuc.获取控件文件信息()['iRoom_Android']
         #第一个为主播
-        devicelist = ['p6','pixel','p10_294','sm_s4']
+        devicelist = ['sm_s4']
         self.sd = pubfuc.StartDriver(devicelist)
 
         self.proc_list = []
@@ -174,6 +184,7 @@ class iRoomTest(unittest.TestCase):
         self.driverlist = []
 
         for i in range(len(self.sd.devicelist)):
+            print(i)
             driver = webdriver.Remote(f"http://localhost:{self.sd.aport[i]}/wd/hub", self.sd.realdevice[i])
             self.driverlist.append(driver)
 
@@ -183,7 +194,7 @@ class iRoomTest(unittest.TestCase):
         procs = []
         pool = multiprocessing.Pool(processes=len(self.driverlist))
         for driver in self.driverlist:
-            proc = pool.apply_async(加入离开房间,(driver,'4730',))
+            proc = pool.apply_async(加入离开房间, (driver, '4899',))
             procs.append(proc)
         for i in procs:
             i.get()
@@ -191,15 +202,14 @@ class iRoomTest(unittest.TestCase):
             i.wait()
 
 
-
     def test_002参与者多次切回角色(self):
         procs = []
         pool = multiprocessing.Pool(processes=len(self.driverlist))
         for driver in self.driverlist:
-            proc = pool.apply_async(切换角色, (driver, '4763',))
+            proc = pool.apply_async(切换角色, (driver, '4859',))
             procs.append(proc)
-        for i in procs:
-            i.get()
+        # for i in procs:
+        #     i.get()
         for i in procs:
             i.wait()
 
@@ -208,7 +218,7 @@ class iRoomTest(unittest.TestCase):
         procs = []
         pool = multiprocessing.Pool(processes=len(self.driverlist))
         for driver in self.driverlist:
-            proc = pool.apply_async(切后台, (driver, '4744',))
+            proc = pool.apply_async(切后台, (driver, '4810',))
             procs.append(proc)
         for i in procs:
             i.get()
@@ -218,8 +228,11 @@ class iRoomTest(unittest.TestCase):
 
     def test_004参与者多次加入离开指导房间(self):
         num = 1
-        for driver in self.driverlist:
-            num += 1
+
+        self.assertTrue(False,'123')
+        def join():
+            print(123+'123')
+        join()
 
     def test_005参与者多次切后台(self):
         for driver in self.driverlist:
