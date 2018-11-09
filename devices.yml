@@ -211,6 +211,7 @@ ip6_test17 :
   automationName: XCUITest
   bundleId: com.powerinfo.iRoom
   udid: f85f4d02a4f8b68cf84fc8372a51707e1a332c38
+  newCommandTimeout : 3600
   autoAcceptAlerts: true
   noReset: true
 
@@ -222,6 +223,7 @@ ip8 :
   automationName: XCUITest
   bundleId: com.powerinfo.iRoom
   udid: add1606785726de5f1b6f76d56e9e0f7e7e7225f
+  newCommandTimeout : 3600
   autoAcceptAlerts: true
   noReset: true
 

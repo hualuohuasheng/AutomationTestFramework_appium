@@ -6,7 +6,7 @@ from time import sleep
 import unittest,myunittest
 import lib.public_functions as pubfuc
 from pathlib import Path
-import multiprocessing
+import multiprocessing,logging
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
 
@@ -20,21 +20,16 @@ def 加入离开房间(driver,roomid):
         try:
             if runcount > failcount:
                 success_flag = False
-            控件文件 = pubfuc.获取控件文件信息()
-            print(driver.desired_capabilities)
-            devicedriverinfo = driver.desired_capabilities
+            devicedriverinfo = driver.desired_capabilities  # 获取正在运行的设备的参数设置
+            print(devicedriverinfo)
             isIOS = 'desired' not in devicedriverinfo
-            if isIOS:
-                控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['platformName'])]
-                deviceid = devicedriverinfo['udid']
-            else:
-                控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['desired']['platformName'])]
-                deviceid = devicedriverinfo['desired']['deviceName']
+            控件信息, deviceid = pubfuc.获取控件信息(devicedriverinfo)
             roomid = f' {roomid}' if isIOS else roomid
             while num < 201:
                 if num == 1:
                     sleep(1)
                     print(driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).get_attribute('enabled'))
+                    # print(driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).get_attribute('enabled'))
                     driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).click()
                     sleep(5)
                 roomxpath = re.sub("xxxx", roomid, 控件信息['房间列表']['xpath'])
@@ -45,7 +40,7 @@ def 加入离开房间(driver,roomid):
                 if not driver.find_element_by_id(控件信息['JOIN']['id']).get_attribute('enabled'):
                     sleep(5)
                 driver.find_element_by_id(控件信息['JOIN']['id']).click()
-                sleep(15)
+                sleep(10)
                 print(driver.find_element_by_id(控件信息['离开房间']['id']).get_attribute('enabled'))
                 driver.find_element_by_id(控件信息['离开房间']['id']).click()
                 sleep(6)
@@ -64,61 +59,59 @@ def 加入离开房间(driver,roomid):
             num = 1
 
 def 切换角色(driver,roomid):
-    try:
-        控件文件 = pubfuc.获取控件文件信息()
-        print(driver.desired_capabilities)
-        devicedriverinfo = driver.desired_capabilities
-        isIOS = 'desired' not in devicedriverinfo
-        if isIOS:
-            控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['platformName'])]
-            deviceid = devicedriverinfo['udid']
-        else:
-            控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['desired']['platformName'])]
-            deviceid = devicedriverinfo['desired']['deviceName']
-        # click 多人群聊
-        driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).click()
-        sleep(3)
-        roomid = f' {roomid}' if isIOS else roomid
-        roomxpath = re.sub("xxxx", roomid, 控件信息['房间列表']['xpath'])
-        pubfuc.waittimeout(driver.find_element_by_xpath(roomxpath))
-        # click 房间
-        driver.find_element_by_xpath(roomxpath).click()
-        # pubfuc.waittimeout(driver.find_element_by_id(控件信息['JOIN']['id']))
-        sleep(5)
-        while not driver.find_element_by_id(控件信息['JOIN']['id']).get_attribute('enabled'):
+    failcount = 1  # 用例中出错后重新执行的次数
+    runcount = 1
+    success_flag = True
+    num = 1
+    while success_flag:
+        try:
+            if runcount > failcount:
+                success_flag = False
+            devicedriverinfo = driver.desired_capabilities  # 获取正在运行的设备的参数设置
+            print(devicedriverinfo)
+            isIOS = 'desired' not in devicedriverinfo
+            控件信息, deviceid = pubfuc.获取控件信息(devicedriverinfo)
+            # click 多人群聊
+            driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).click()
+            sleep(5)
+            roomid = f' {roomid}' if isIOS else roomid
+            roomxpath = re.sub("xxxx", roomid, 控件信息['房间列表']['xpath'])
+            pubfuc.waittimeout(driver.find_element_by_xpath(roomxpath))
+            # click 房间
+            driver.find_element_by_xpath(roomxpath).click()
+            # pubfuc.waittimeout(driver.find_element_by_id(控件信息['JOIN']['id']))
+            sleep(5)
+            while not driver.find_element_by_id(控件信息['JOIN']['id']).get_attribute('enabled'):
+                sleep(3)
+            driver.find_element_by_id(控件信息['JOIN']['id']).click()
+            sleep(10)
+            while num < 501:
+                print(f"第{num}次{driver}切换角色")
+                print(driver.find_element_by_id(控件信息['切换角色']['id']).get_attribute('enabled'))
+                driver.find_element_by_id(控件信息['切换角色']['id']).click()
+                sleep(6)
+                num += 1
+        except Exception as e:
+            loctime = pubfuc.getLocalTime()
+            img_file = Path(__file__).cwd().parent / 'screen' / f'{loctime}-{deviceid}.png'
+            driver.save_screenshot(str(img_file))
             sleep(3)
-        driver.find_element_by_id(控件信息['JOIN']['id']).click()
-        sleep(10)
-        num = 1
-        while num < 301:
-            print(f"第{num}次{driver}切换角色")
-            print(driver.find_element_by_id(控件信息['切换角色']['id']).get_attribute('enabled'))
-            driver.find_element_by_id(控件信息['切换角色']['id']).click()
-            sleep(6)
-            num += 1
-    except Exception as e:
-        loctime = pubfuc.getLocalTime()
-        img_file = Path(__file__).cwd().parent / 'screen' / f'{loctime}-{deviceid}.png'
-        driver.save_screenshot(str(img_file))
-        sleep(3)
-        print(e.args[0])
-        traceback.print_exc()
-        driver.close()
+            print(e.args[0])
+            traceback.print_exc()
+            print(f'第{runcount}次重跑')
+            runcount += 1
+            driver.close_app()
+            driver.launch_app()
+            num = 1
+
 
 
 def 切后台(driver,roomid):
     try:
-        控件文件 = pubfuc.获取控件文件信息()
-        print(driver.desired_capabilities)
-        print(driver.capabilities)
-        devicedriverinfo = driver.desired_capabilities
+        devicedriverinfo = driver.desired_capabilities  # 获取正在运行的设备的参数设置
+        print(devicedriverinfo)
         isIOS = 'desired' not in devicedriverinfo
-        if isIOS:
-            控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['platformName'])]
-            deviceid = devicedriverinfo['udid']
-        else:
-            控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['desired']['platformName'])]
-            deviceid = devicedriverinfo['desired']['deviceName']
+        控件信息, deviceid = pubfuc.获取控件信息(devicedriverinfo)
         # click 多人群聊
         driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).click()
         sleep(3)
@@ -134,7 +127,7 @@ def 切后台(driver,roomid):
         driver.find_element_by_id(控件信息['JOIN']['id']).click()
         sleep(10)
         num = 1
-        while num < 301:
+        while num < 501:
             print(f"第{num}次{driver}切后台")
             driver.background_app(5)
             sleep(5)
@@ -157,7 +150,7 @@ class iRoomTest(unittest.TestCase):
     def setUp(self):
         self.控件信息 = pubfuc.获取控件文件信息()['iRoom_Android']
         #第一个为主播
-        devicelist = ['sm_s4']
+        devicelist = ['hwmate7','huashuo_ASUS_T00G']
         self.sd = pubfuc.StartDriver(devicelist)
 
         self.proc_list = []
@@ -194,7 +187,7 @@ class iRoomTest(unittest.TestCase):
         procs = []
         pool = multiprocessing.Pool(processes=len(self.driverlist))
         for driver in self.driverlist:
-            proc = pool.apply_async(加入离开房间, (driver, '4899',))
+            proc = pool.apply_async(加入离开房间, (driver, '4951',))
             procs.append(proc)
         for i in procs:
             i.get()
@@ -206,10 +199,10 @@ class iRoomTest(unittest.TestCase):
         procs = []
         pool = multiprocessing.Pool(processes=len(self.driverlist))
         for driver in self.driverlist:
-            proc = pool.apply_async(切换角色, (driver, '4859',))
+            proc = pool.apply_async(切换角色, (driver, '4944',))
             procs.append(proc)
-        # for i in procs:
-        #     i.get()
+        for i in procs:
+            i.get()
         for i in procs:
             i.wait()
 

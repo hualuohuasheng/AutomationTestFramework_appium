@@ -1,6 +1,8 @@
+# -*- coding:utf-8 -*-
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.headerregistry import Address
 
 mail_host = "mail.sjdd.com.cn"
 mail_user = 'liml@sjdd.com.cn'
@@ -15,17 +17,17 @@ receivers = ['liml@sjdd.com.cn']
 #     mail_body = f.read()
 
 message = MIMEMultipart()
-message['Subject'] = '×Ô¶¯»¯²âÊÔ½á¹û'
+message['Subject'] = 'è‡ªåŠ¨åŒ–æµ‹è¯•ç»“æžœ'
 message['From'] = sender
-message['To'] = receivers[0]
+message['To'] = ','.join(receivers)
 mail_body = '123'
 
 message.attach(MIMEText(mail_body,'html','utf-8'))
 
-puretext = MIMEText(mail_host)
+# puretext = MIMEText(mail_host)
 
 try:
-    # smtpObj = smtplib.SMTP()
+    # smtpObj = smtplib.SMTP()s
     # smtpObj.connect(mail_host,25)
     smtpObj = smtplib.SMTP_SSL(mail_host,465)
     smtpObj.login(mail_user,mail_pass)

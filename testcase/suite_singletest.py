@@ -11,16 +11,26 @@ mail_recievers = ['liml']
 
 
 if __name__ == '__main__':
-    suite = unittest.TestSuite()
+    suite = myunittest.TestSuite()
     tests = [iRoomtestcase.iRoomTest("test_001参与者多次加入离开房间")]
     # tests =[]
     suite.addTests(tests)
 
     result_file = pubfunc.get_real_dir_path(__file__,'../testresult')+ f'/{pubfunc.getLocalTime()}_result.txt'
     print(result_file)
+    runner = myunittest.TextTestRunner(verbosity=2)
+    runner.run(suite)
+    # tmp = sys.stdout
+    # err = sys.stderr
+    # sys.stdout = open('out.log','w')
+    # sys.stderr = open('error.log','w')
 
-    with open(result_file,'a') as f:
-        runner = unittest.TextTestRunner(stream=f,verbosity=2)
-        runner.run(suite)
+    # sys.stdout = tmp
+    # sys.stderr = err
+    # sys.stdout = open('out.log','w')
+    # print('自动化测试')
+    # with open(result_file,'w') as f:
+    #     runner = myunittest.TextTestRunner(stream=f,verbosity=2)
+    #     runner.run(suite)
 
     # pubfunc.send_mail(mail_recievers,result_file)

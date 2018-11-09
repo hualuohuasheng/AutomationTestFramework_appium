@@ -26,6 +26,7 @@ def send_mail(receivers,message):
     message = MIMEMultipart()
     message['Subject'] = '自动化测试结果'
     message['From'] = sender
+    message['To'] = ','.join(receivers)
     mail_body = body
 
     message.attach(MIMEText(mail_body, 'html', 'utf-8'))
@@ -41,12 +42,14 @@ def send_mail(receivers,message):
     except smtplib.SMTPException as e:
         print('error:', e.args)
 
-def get_real_dir_path(path,paths = ''):
+
+def get_real_dir_path(path,paths=''):
     curdir = os.path.dirname(path)
     if paths is None:
         return curdir
     else:
         return os.path.abspath(os.path.join(curdir,paths))
+
 
 def 获取当前系统():
     systeminfo = platform.platform()
@@ -58,6 +61,7 @@ def 获取当前系统():
     else:
         systemname = 'linux'
     return systemname
+
 
 def 获取控件文件信息(filename='app控件'):
     控件文件路径 = Path(__file__).cwd().parent / f'{filename}.yml'
@@ -100,15 +104,16 @@ def cleanNodeProcess():
                 kill_res = subprocess.getoutput(kill_cmd)
                 print(kill_res)
 
-
 def waittimeout(element,timeout=10):
     begintime = time.time()
     while begintime + timeout > time.time():
         if element is not None:
             break
+
 def getLocalTime():
     loctime = time.strftime('%Y-%m-%d-%H:%M:%S', time.localtime())
     return loctime
+
 
 def get_android_app_info(app="iRoom"):
 
@@ -144,6 +149,7 @@ def get_android_app_info(app="iRoom"):
     print(desired_caps)
     return desired_caps
 
+
 def get_ios_app_info():
     udid = os.popen('idevice_id --list').readlines()
     bundleid = os.popen("ideviceInstaller -l|grep PowerInfo").readlines()
@@ -161,6 +167,18 @@ def get_ios_app_info():
 
     print(desired_caps)
     return desired_caps
+
+
+def 获取控件信息(devicedriverinfo):
+    控件文件 = 获取控件文件信息()
+    isIOS = 'desired' not in devicedriverinfo#判断运行的设备是否为IOS
+    if isIOS:
+        控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['platformName'])]
+        deviceid = devicedriverinfo['udid']
+    else:
+        控件信息 = 控件文件['iRoom_{}'.format(devicedriverinfo['desired']['platformName'])]
+        deviceid = devicedriverinfo['desired']['deviceName']
+    return 控件信息,deviceid
 
 
 class StartDriver():
@@ -208,11 +226,6 @@ class StartDriver():
 
         # print(pidlist)
         return pidlist
-
-    def killNodeProPid(self,pidlist):
-
-        for pid in pidlist :
-            subprocess.Popen(f'kill {pid}',shell=True)
 
 
 def startMultAppiumServer(sd):

@@ -75,14 +75,6 @@ import platform
 
 
 
-import time
-
-print(time.time())
-print(time.ctime())
-print(time.strftime('%Y-%m-%d-%H:%M:%S',time.localtime()))
-sd = os.path.join(os.getcwd(),'..')
-print(os.path.dirname(__file__))
-print(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 def add(a, b):
     return a+b
@@ -96,17 +88,24 @@ def multi(a, b):
 def divide(a, b):
     return a/b
 
-import myunittest
+import unittest
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    filename= '1.txt',
+                    filemode= 'w'
+                    )
+
+def t1(cls):
+    cls.assertTrue(False,'this is failed')
 
 
-class TestMathFunc(myunittest.TestCase):
+class TestMathFunc(unittest.TestCase):
     """Test mathfuc.py"""
 
-    def setUp(self):
-        print(1)
 
     def test_add(self):
         """Test method add(a, b)"""
+        t1(self)
         self.assertEqual(3, add(1, 2))
         self.assertNotEqual(3, add(2, 2))
 
@@ -123,15 +122,13 @@ class TestMathFunc(myunittest.TestCase):
         self.assertEqual(2, divide(6, 3))
         self.assertEqual(2.5, divide(5, 2))
 
-    def tearDown(self):
-        print('clean')
 
-import HtmlTestRunner
-# if __name__ == '__main__':
-#     suite = myunittest.TestSuite()
-#
-#     tests = [TestMathFunc("test_add")]
-#     suite.addTests(tests)
-#
-#     runner = myunittest.TextTestRunner(verbosity=2)
-#     runner.run(suite)
+if __name__ == '__main__':
+    suite = unittest.TestSuite()
+
+    tests = [TestMathFunc("test_add")]
+    suite.addTests(tests)
+
+    runner = unittest.TextTestRunner(verbosity=2)
+    runner.run(suite)
+
