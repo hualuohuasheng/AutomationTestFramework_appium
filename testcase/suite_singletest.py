@@ -12,8 +12,8 @@ mail_recievers = ['liml']
 
 if __name__ == '__main__':
     suite = myunittest.TestSuite()
-    tests = [iRoomtestcase.iRoomTest("test_001参与者多次加入离开房间")]
-    # tests =[]
+    tests = [iRoomtestcase.iRoomTest("test_002参与者多次切换角色")]
+    # tests =[] test_002参与者多次切换角色 test_001参与者多次加入离开房间 test_004参与者多次加入离开指导房间
     suite.addTests(tests)
 
     result_file = pubfunc.get_real_dir_path(__file__,'../testresult')+ f'/{pubfunc.getLocalTime()}_result.txt'

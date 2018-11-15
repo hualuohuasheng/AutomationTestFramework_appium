@@ -11,7 +11,7 @@ oppo_R9 :
   newCommandTimeout : 3600
   noReset : true
 
-meizu_Mate2 :
+meizu_Note2 :
   platformName: Android
   platformVersion: 5.1
   deviceName: 810BBM623MG2
@@ -65,6 +65,16 @@ p10_294 :
   platformName: Android
   platformVersion: 8.0
   deviceName: VGT7N17818000695
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
+p10_295 :
+  platformName: Android
+  platformVersion: 8.0
+  deviceName: VGT7N17818000150
   appPackage: com.powerinfo.pi_iroom.demo
   appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
   autoAcceptAlerts: true
@@ -170,7 +180,7 @@ ip6s_test12 :
   deviceName: IPhone
   automationName: XCUITest
   bundleId: com.powerinfo.iRoom
-  udid: fbbfdbd132f5560dca7e3feb08c18b9e9060a3e2
+  udid: a8e780e57cd989f3ed067eea2195a9bd5fd63fd3
   autoAcceptAlerts: true
   noReset: true
 
@@ -234,6 +244,16 @@ sm_s4 :
   platformName: Android
   platformVersion: 4.4.4
   deviceName: 34a7b664
+  appPackage: com.powerinfo.pi_iroom.demo
+  appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
+  autoAcceptAlerts: true
+  newCommandTimeout : 3600
+  noReset: true
+
+sony_z5 :
+  platformName: Android
+  platformVersion: 6.0
+  deviceName: BH900ML94C
   appPackage: com.powerinfo.pi_iroom.demo
   appActivity: com.powerinfo.pi_iroom.demo.setting.LoginSettingActivity
   autoAcceptAlerts: true

@@ -3,154 +3,21 @@ import sys,re,subprocess,traceback
 # sys.path.append('..')
 
 from time import sleep
-import unittest,myunittest
+import unittest
 import lib.public_functions as pubfuc
 from pathlib import Path
 import multiprocessing,logging
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
-
-
-def 加入离开房间(driver,roomid):
-    failcount = 1# 用例中出错后重新执行的次数
-    runcount = 1
-    success_flag = True
-    num = 1
-    while success_flag:
-        try:
-            if runcount > failcount:
-                success_flag = False
-            devicedriverinfo = driver.desired_capabilities  # 获取正在运行的设备的参数设置
-            print(devicedriverinfo)
-            isIOS = 'desired' not in devicedriverinfo
-            控件信息, deviceid = pubfuc.获取控件信息(devicedriverinfo)
-            roomid = f' {roomid}' if isIOS else roomid
-            while num < 201:
-                if num == 1:
-                    sleep(1)
-                    print(driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).get_attribute('enabled'))
-                    # print(driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).get_attribute('enabled'))
-                    driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).click()
-                    sleep(5)
-                roomxpath = re.sub("xxxx", roomid, 控件信息['房间列表']['xpath'])
-                driver.find_element_by_xpath(roomxpath).click()
-                print(f"第{num}次{driver}加入房间")
-                # pubfuc.waittimeout(driver.find_element_by_id(控件信息['JOIN']['id']))
-                sleep(5)
-                if not driver.find_element_by_id(控件信息['JOIN']['id']).get_attribute('enabled'):
-                    sleep(5)
-                driver.find_element_by_id(控件信息['JOIN']['id']).click()
-                sleep(10)
-                print(driver.find_element_by_id(控件信息['离开房间']['id']).get_attribute('enabled'))
-                driver.find_element_by_id(控件信息['离开房间']['id']).click()
-                sleep(6)
-                num += 1
-        except Exception as e:
-            loctime = pubfuc.getLocalTime()
-            print(deviceid,loctime)
-            img_file = Path(__file__).cwd().parent / 'screen' / f'{loctime}-{deviceid}.png'
-            driver.save_screenshot(str(img_file))
-            sleep(3)
-            print(e.args[0])
-            traceback.print_exc()
-            runcount += 1
-            driver.close_app()
-            driver.launch_app()
-            num = 1
-
-def 切换角色(driver,roomid):
-    failcount = 1  # 用例中出错后重新执行的次数
-    runcount = 1
-    success_flag = True
-    num = 1
-    while success_flag:
-        try:
-            if runcount > failcount:
-                success_flag = False
-            devicedriverinfo = driver.desired_capabilities  # 获取正在运行的设备的参数设置
-            print(devicedriverinfo)
-            isIOS = 'desired' not in devicedriverinfo
-            控件信息, deviceid = pubfuc.获取控件信息(devicedriverinfo)
-            # click 多人群聊
-            driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).click()
-            sleep(5)
-            roomid = f' {roomid}' if isIOS else roomid
-            roomxpath = re.sub("xxxx", roomid, 控件信息['房间列表']['xpath'])
-            pubfuc.waittimeout(driver.find_element_by_xpath(roomxpath))
-            # click 房间
-            driver.find_element_by_xpath(roomxpath).click()
-            # pubfuc.waittimeout(driver.find_element_by_id(控件信息['JOIN']['id']))
-            sleep(5)
-            while not driver.find_element_by_id(控件信息['JOIN']['id']).get_attribute('enabled'):
-                sleep(3)
-            driver.find_element_by_id(控件信息['JOIN']['id']).click()
-            sleep(10)
-            while num < 501:
-                print(f"第{num}次{driver}切换角色")
-                print(driver.find_element_by_id(控件信息['切换角色']['id']).get_attribute('enabled'))
-                driver.find_element_by_id(控件信息['切换角色']['id']).click()
-                sleep(6)
-                num += 1
-        except Exception as e:
-            loctime = pubfuc.getLocalTime()
-            img_file = Path(__file__).cwd().parent / 'screen' / f'{loctime}-{deviceid}.png'
-            driver.save_screenshot(str(img_file))
-            sleep(3)
-            print(e.args[0])
-            traceback.print_exc()
-            print(f'第{runcount}次重跑')
-            runcount += 1
-            driver.close_app()
-            driver.launch_app()
-            num = 1
-
-
-
-def 切后台(driver,roomid):
-    try:
-        devicedriverinfo = driver.desired_capabilities  # 获取正在运行的设备的参数设置
-        print(devicedriverinfo)
-        isIOS = 'desired' not in devicedriverinfo
-        控件信息, deviceid = pubfuc.获取控件信息(devicedriverinfo)
-        # click 多人群聊
-        driver.find_element_by_xpath(控件信息['多人群聊']['xpath']).click()
-        sleep(3)
-        roomid = f' {roomid}' if isIOS else roomid
-        roomxpath = re.sub("xxxx", roomid, 控件信息['房间列表']['xpath'])
-        pubfuc.waittimeout(driver.find_element_by_xpath(roomxpath))
-        # click 房间
-        driver.find_element_by_xpath(roomxpath).click()
-        # pubfuc.waittimeout(driver.find_element_by_id(控件信息['JOIN']['id']))
-        sleep(5)
-        if not driver.find_element_by_id(控件信息['JOIN']['id']).get_attribute('enabled'):
-            sleep(3)
-        driver.find_element_by_id(控件信息['JOIN']['id']).click()
-        sleep(10)
-        num = 1
-        while num < 501:
-            print(f"第{num}次{driver}切后台")
-            driver.background_app(5)
-            sleep(5)
-            # 切后台回来后，查看离开房间按钮是否可用，确定正确切回了前台
-            print(driver.find_element_by_id(控件信息['离开房间']['id']).get_attribute('enabled'))
-            num += 1
-    except Exception as e:
-        loctime = pubfuc.getLocalTime()
-        print(deviceid)
-        img_file = Path(__file__).cwd().parent / 'screen' / f'{loctime}-{deviceid}.png'
-        driver.save_screenshot(str(img_file))
-        sleep(3)
-        print(e.args[0])
-        traceback.print_exc()
-
-
+import testcase.app_behavior as app_behavior
 
 class iRoomTest(unittest.TestCase):
 
     def setUp(self):
         self.控件信息 = pubfuc.获取控件文件信息()['iRoom_Android']
         #第一个为主播
-        devicelist = ['hwmate7','huashuo_ASUS_T00G']
+        devicelist = ['ip8','ip7']
+        # devicelist = ['p10_295']
         self.sd = pubfuc.StartDriver(devicelist)
 
         self.proc_list = []
@@ -187,7 +54,7 @@ class iRoomTest(unittest.TestCase):
         procs = []
         pool = multiprocessing.Pool(processes=len(self.driverlist))
         for driver in self.driverlist:
-            proc = pool.apply_async(加入离开房间, (driver, '4951',))
+            proc = pool.apply_async(app_behavior.加入离开房间, (driver, '5587',))
             procs.append(proc)
         for i in procs:
             i.get()
@@ -195,11 +62,11 @@ class iRoomTest(unittest.TestCase):
             i.wait()
 
 
-    def test_002参与者多次切回角色(self):
+    def test_002参与者多次切换角色(self):
         procs = []
         pool = multiprocessing.Pool(processes=len(self.driverlist))
         for driver in self.driverlist:
-            proc = pool.apply_async(切换角色, (driver, '4944',))
+            proc = pool.apply_async(app_behavior.切换角色, (driver, '5602',))
             procs.append(proc)
         for i in procs:
             i.get()
@@ -211,7 +78,7 @@ class iRoomTest(unittest.TestCase):
         procs = []
         pool = multiprocessing.Pool(processes=len(self.driverlist))
         for driver in self.driverlist:
-            proc = pool.apply_async(切后台, (driver, '4810',))
+            proc = pool.apply_async(app_behavior.切后台, (driver, '5167',))
             procs.append(proc)
         for i in procs:
             i.get()
@@ -220,12 +87,15 @@ class iRoomTest(unittest.TestCase):
 
 
     def test_004参与者多次加入离开指导房间(self):
-        num = 1
-
-        self.assertTrue(False,'123')
-        def join():
-            print(123+'123')
-        join()
+        procs = []
+        pool = multiprocessing.Pool(processes=len(self.driverlist))
+        for driver in self.driverlist:
+            proc = pool.apply_async(app_behavior.创建房间, (driver,))
+            procs.append(proc)
+        for i in procs:
+            i.get()
+        for i in procs:
+            i.wait()
 
     def test_005参与者多次切后台(self):
         for driver in self.driverlist:
@@ -269,6 +139,7 @@ class iRoomTest(unittest.TestCase):
 
     def tearDown(self):
         # quite the device driver
+        # pass
         for driver in self.driverlist:
             driver.quit()
         for proc in self.proc_list:
@@ -276,7 +147,7 @@ class iRoomTest(unittest.TestCase):
             proc.terminate()
             # proc.kill()
         #clean the node process,appium server is started by node
-        pubfuc.cleanNodeProcess()
+        # pubfuc.cleanNodeProcess()
 
 
 

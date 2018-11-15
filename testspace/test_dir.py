@@ -123,12 +123,7 @@ class TestMathFunc(unittest.TestCase):
         self.assertEqual(2.5, divide(5, 2))
 
 
-if __name__ == '__main__':
-    suite = unittest.TestSuite()
+a = "//android.widget.TextView[@text='RoomID :5582']"
+print(re.findall('Room\w+',a)[0])
 
-    tests = [TestMathFunc("test_add")]
-    suite.addTests(tests)
-
-    runner = unittest.TextTestRunner(verbosity=2)
-    runner.run(suite)
 
