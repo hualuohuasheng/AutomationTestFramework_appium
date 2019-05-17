@@ -1,14 +1,10 @@
 # -*- coding:utf-8 -*-
-import sys,re,subprocess,traceback
-# sys.path.append('..')
-
+import re
 from time import sleep
 import unittest
 import lib.public_functions as pubfuc
-from pathlib import Path
-import multiprocessing,logging
+import multiprocessing
 from appium import webdriver
-from appium.webdriver.common.touch_action import TouchAction
 import testcase.app_behavior as app_behavior
 
 class iRoomTest(unittest.TestCase):
