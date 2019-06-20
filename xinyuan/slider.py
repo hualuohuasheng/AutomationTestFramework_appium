@@ -413,6 +413,5 @@ if __name__ == '__main__':
     # check.register('13967122154')
 
     cut_image, back_image = read_img_file('icon.png', 'icon.jpg')
-    # cut_image, back_image = read_img_file('new.png', '1.png')
     distance = get_distance(back_img=back_image, cut_img=cut_image)
     print(distance)
