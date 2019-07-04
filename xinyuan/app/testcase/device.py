@@ -28,5 +28,11 @@ ios_caps = {
 class Device:
 
     @classmethod
-    def get_cur_device(cls, device):
-        cls.caps = android_caps
+    def get_cur_device(cls, version, device_id, platform):
+        cls.caps = android_caps if 'Android' in platform else ios_caps
+        cls.caps['platformName'] = platform
+        cls.caps['platformVersion'] = version
+        if 'IOS' in platform:
+            cls.caps['udid'] = device_id
+        else:
+            cls.caps['deviceName'] = device_id
