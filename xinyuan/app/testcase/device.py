@@ -2,6 +2,7 @@
 
 android_caps = {
     "platformName": "Android",
+    "automationName": "uiautomator2",
     "platformVersion": "9",
     "deviceName": "CSX0217629006119",
     "appPackage": "com.ex55.app",
@@ -28,7 +29,7 @@ ios_caps = {
 class Device:
 
     @classmethod
-    def get_cur_device(cls, version, device_id, platform):
+    def get_cur_device(cls, device_id, version, platform='Android'):
         cls.caps = android_caps if 'Android' in platform else ios_caps
         cls.caps['platformName'] = platform
         cls.caps['platformVersion'] = version
