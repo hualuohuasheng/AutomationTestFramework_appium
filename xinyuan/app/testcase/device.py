@@ -7,6 +7,7 @@ android_caps = {
     "deviceName": "CSX0217629006119",
     "appPackage": "com.ex55.app",
     "appActivity": "com.ex55.view.activity.NewSplashActivity",
+    "appWaitActivity": "com.ex55.view.activity.GalaxyMainActivity",
     "noReset": "true",
     "autoAcceptAlerts": "true",
     "newCommandTimeout": 3600
@@ -27,6 +28,8 @@ ios_caps = {
 
 
 class Device:
+
+    caps = None
 
     @classmethod
     def get_cur_device(cls, device_id, version, platform='Android'):
