@@ -51,9 +51,8 @@ class 币币页:
         ele = [By.XPATH, f"//android.widget.TextView[@id='{self.id_loc_base}/tvListName' and contains(@text, '{coins}')]"] if self.is_android else []
         return self.driver.find_elements(ele[0], ele[1])
 
-    def 获取指定币种的最新价(self):
-        ele = [By.XPATH,
-               f"//android.widget.TextView[@id='{self.id_loc_base}/tvListName' and contains(@text, '{coins}')]"] if self.is_android else []
+    def 获取指定币种的最新价(self, coins):
+        ele = [By.XPATH, f"//android.widget.TextView[@id='{self.id_loc_base}/tvListName' and contains(@text, '{coins}')]"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
     def 买入标签按钮(self):
@@ -136,8 +135,17 @@ class 币币页:
         ele = [By.ID, f"{self.id_loc_base}/tvDepthItemPrice"] if self.is_android else []
         return self.driver.find_elements(ele[0], ele[1])
 
+    def 获取盘口所有数量(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvDepthItemAmount"] if self.is_android else []
+        return self.driver.find_elements(ele[0], ele[1])
+
     def 获取当前委托所有订单币种(self):
         ele = [By.ID, f"{self.id_loc_base}/tvSymbol"] if self.is_android else []
+        return self.driver.find_elements(ele[0], ele[1])
+
+    #  订单是买入还是卖出
+    def 获取当前委托所有订单状态(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvStatus"] if self.is_android else []
         return self.driver.find_elements(ele[0], ele[1])
 
     def 获取当前委托所有订单价格(self):
@@ -159,3 +167,34 @@ class 币币页:
     def 获取当前委托所有订单取消(self):
         ele = [By.ID, f"{self.id_loc_base}/tvCancel"] if self.is_android else []
         return self.driver.find_elements(ele[0], ele[1])
+
+    def 历史委托_筛选按钮(self):
+        ele = [By.ID, f"{self.id_loc_base}/custom_header_tv_right_btn"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 历史委托_筛选_币种编辑框(self):
+        ele = [By.ID, f"{self.id_loc_base}/etCoinsTitle"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 历史委托_筛选_选择计价单位(self):
+        ele = [By.ID, f"{self.id_loc_base}/cbCoinsType"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 历史委托_筛选_计价单位(self, name):
+        ele = [By.XPATH, f"//android.widget.TextView[@text='{name}']"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 历史委托_筛选_重置按钮(self):
+        ele = [By.ID, f"{self.id_loc_base}/btnScreeningReset"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 历史委托_筛选_确认按钮(self):
+        ele = [By.ID, f"{self.id_loc_base}/btnScreeningEnter"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 历史委托_筛选_table按钮(self, name):
+        ele = [By.XPATH, f"//android.widget.TextView[@text='{name}']"] if self.is_android else []
+        return self.driver.find_elements(ele[0], ele[1])
+
+
+

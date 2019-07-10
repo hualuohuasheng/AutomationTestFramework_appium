@@ -2,7 +2,7 @@
 
 android_caps = {
     "platformName": "Android",
-    "automationName": "uiautomator2",
+    "automationName": "UiAutomator2",
     "platformVersion": "9",
     "deviceName": "CSX0217629006119",
     "appPackage": "com.ex55.app",
