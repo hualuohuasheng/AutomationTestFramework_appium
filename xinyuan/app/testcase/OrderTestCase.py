@@ -1,7 +1,6 @@
 # -*- coding:utf-8 -*-
 
 import unittest
-from xinyuan.app.appelement.user import UserPage
 from xinyuan.app.appelement.币币页 import 币币页
 import xinyuan.app.testcase.device as device
 import xinyuan.app.testcase.user_functions as func
@@ -60,7 +59,7 @@ class OrderTest(unittest.TestCase):
             func.选择币种(self.driver, 'eth/usdt')  # 选择币种
             self.driver.implicitly_wait(10)
             order = {'币种': self.coins.upper(), '属性': '卖出', '价格': '500', '数量': '0.1'}
-            old_amount, ordertime = func.下单(self.driver, order['价格'], order['数量'], '卖出')
+            func.下单(self.driver, order['价格'], order['数量'], '卖出')
             res = func.获取下单后当前委托数据(self.driver)
         for r in res:
             self.page.获取当前委托所有订单取消()[0].click()
@@ -150,7 +149,7 @@ class OrderTest(unittest.TestCase):
                       500)
             amount_after_order = self.page.币种可用数量显示().text
             self.assertEqual(len(res_amount), 1, '分步成交过程中成交次数不对')
-            history_res = func.获取下单后历史委托数据(self.driver, False)
+            history_res = func.获取下单后历史委托数据(self.driver)
             expected = {'币种': self.coins.upper(), '属性': i, '数量': history_res['数量'], '价格': price,
                         '时间戳': time.mktime(time.strptime(order_time.split('+')[0], "%Y-%m-%dT%H:%M:%S")), '状态': '已撤单'}
             func.验证下单前后数量显示是否正确(self, amount_befor_order, amount_after_order, expected)
@@ -169,4 +168,3 @@ class OrderTest(unittest.TestCase):
 
         func.历史委托中筛选(self.driver, [['已完成', 0]])
         func.历史委托中筛选(self.driver, [['已取消', 0]])
-

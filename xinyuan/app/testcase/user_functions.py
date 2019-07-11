@@ -2,11 +2,15 @@
 
 from xinyuan.app.appelement.user import UserPage
 from xinyuan.app.appelement.币币页 import 币币页
+from xinyuan.app.appelement.法币页 import 法币页
 from time import sleep
 import time
 import datetime
 import xml.etree.ElementTree as ET
 import re
+
+
+"""" 执行操作的相关函数 """
 
 
 def log_out(driver):
@@ -43,13 +47,12 @@ def 获取历史委托中日期时间(source):
         res_date.append(e.attrib['text'])
     for e in tree.iterfind(".//android.widget.TextView[@resource-id='com.ex55.app:id/tvOrderTime']"):
         res_time.append(e.attrib['text'])
-    res = []
     print(res_time, res_date)
     print(reversed(res_time), reversed(res_date))
     if len(res_time) != len(res_date):
-        res = [reversed(res_date)[i] + " " + reversed(res_time)[i] for i in min(len(res_time), len(res_date))]
+        res = [reversed(res_date)[i] + " " + reversed(res_time)[i] for i in range(min(len(res_time), len(res_date)))]
     else:
-        res = [res_date[i] + " " + res_time[i] for i in len(res_time)]
+        res = [res_date[i] + " " + res_time[i] for i in range(len(res_time))]
     print(res)
 
 
@@ -148,19 +151,6 @@ def modify_login_password(driver, old_pwd, new_pwd):
     sleep(10)
 
 
-def 验证是否登录(driver, account, pwd):
-    user_page = UserPage(driver)
-    user_page.进入用户页面按钮().click()
-    sleep(2)
-    user_name = user_page.用户名().text
-    if '请登录' in user_name:
-        user_page.用户名().click()
-        sleep(10)
-        log_in(driver, account, pwd)
-        sleep(15)
-    driver.back()
-
-
 def 选择币种(driver, coins):
     page = 币币页(driver)
     if coins.lower() == re.sub(' ', '', page.币种标题显示().text.lower()):
@@ -195,12 +185,35 @@ def 下单(driver, price, amount, orderway='买入'):
     return old_amount, order_time
 
 
+def 历史委托中筛选(driver, conditions):
+    page = 币币页(driver)
+    page.历史委托_筛选按钮().click()
+    driver.implicitly_wait(5)
+    for e in conditions:
+        print(e[0], e[1])
+        page.历史委托_筛选_table按钮(e[0])[e[1]].click()
+        sleep(0.5)
+    page.历史委托_筛选_确认按钮().click()
+
+    if len(page.获取当前委托所有订单币种()) > 0:
+        size = driver.get_window_size()
+        while True:
+            page_source_1 = driver.page_source
+            滑动页面(driver, size['width'] - 100, size['height'] * 4 / 5, size['width'] - 100, size['height'] / 5, 200)
+            page_source_2 = driver.page_source
+            if page_source_1 == page_source_2:
+                break
+
+
+"""" 获取数据的相关函数 """
+
+
 def 获取下单后当前委托数据(driver, isswip=True):
     page = 币币页(driver)
     if isswip:
         size = driver.get_window_size()
         sleep(3)
-        滑动页面(size['width'] - 100, size['height'] * 4 / 5, size['width'] - 100, size['height'] / 5, 500)
+        滑动页面(driver, size['width'] - 100, size['height'] * 4 / 5, size['width'] - 100, size['height'] / 5, 500)
     real_res = []
     币种 = page.获取当前委托所有订单币种()
     print(len(币种))
@@ -247,27 +260,35 @@ def 获取下单后历史委托数据(driver):
     return res
 
 
-def 历史委托中筛选(driver, conditions):
-    page = 币币页(driver)
-    page.历史委托_筛选按钮().click()
-    driver.implicitly_wait(5)
-    for e in conditions:
-        print(e[0], e[1])
-        page.历史委托_筛选_table按钮(e[0])[e[1]].click()
-        sleep(0.5)
-    page.历史委托_筛选_确认按钮().click()
-
-    if len(page.获取当前委托所有订单币种()) > 0:
-        size = driver.get_window_size()
-        while True:
-            page_source_1 = driver.page_source
-            滑动页面(driver, size['width'] - 100, size['height'] * 4 / 5, size['width'] - 100, size['height'] / 5, 200)
-            page_source_2 = driver.page_source
-            if page_source_1 == page_source_2:
-                break
+def 获取买币页的广告数据(driver):
+    page = 法币页(driver)
+    res_单价 = [i.text for i in page.法币页广告_单价()]
+    res_数量 = [i.text for i in page.法币页广告_数量()]
+    res_名称 = [i.text for i in page.法币页广告_名称()]
+    res_最小限额 = [i.text for i in page.法币页广告_最小限额()]
+    res_最大限额 = [i.text for i in page.法币页广告_最大限额()]
+    result = []
+    for i in range(len(res_数量)):
+        market_info = {'单价': res_单价[i], '数量': res_数量[i], '名称': res_名称[i], '最小限额': res_最小限额[i],
+                       '最大限额': res_最大限额[i]}
+        result.append(market_info)
+    return result
 
 
-"""" 验证函数 """
+"""" 验证功能的相关函数 """
+
+
+def 验证是否登录(driver, account, pwd):
+    user_page = UserPage(driver)
+    user_page.进入用户页面按钮().click()
+    sleep(2)
+    user_name = user_page.用户名().text
+    if '请登录' in user_name:
+        user_page.用户名().click()
+        sleep(10)
+        log_in(driver, account, pwd)
+        sleep(15)
+    driver.back()
 
 
 def 验证下单前后数量显示是否正确(obc, amount_befor_order, amount_after_order, expected):
