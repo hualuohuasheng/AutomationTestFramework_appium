@@ -14,7 +14,7 @@ import xinyuan.public_main as pub_func
 
 # 对于输入网站后必须输入用户名和密码才能进入，
 # 可以这种方式访问：http://username:password@url 如：admin:55.exchange@global.dev_test_uat_pub.55.exchange:5555/home/
-url = "http://global.dev_test_uat.55.exchange:5555"
+url = "http://global.dev_test_uat.55.exchange"
 driver = webdriver.Chrome()
 driver.get(url)
 driver.set_page_load_timeout(60)

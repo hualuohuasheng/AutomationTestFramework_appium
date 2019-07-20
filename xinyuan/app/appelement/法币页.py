@@ -27,7 +27,7 @@ class 法币页(BasePage):
         return self.driver.find_elements(ele[0], ele[1])
 
     def 法币页广告_最小限额(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvMaxLimit"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvMinLimit"] if self.is_android else []
         return self.driver.find_elements(ele[0], ele[1])
 
     def 法币页广告_最大限额(self):
@@ -72,7 +72,7 @@ class 法币页(BasePage):
 
     def 下单页_单价(self):
         ele = [By.ID, f"{self.id_loc_base}/tvPricePopOTC"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
     def 下单页_数量或交易额编辑框(self):
         ele = [By.ID, f"{self.id_loc_base}/etInputAmountOTC"] if self.is_android else []
@@ -186,20 +186,32 @@ class 法币页(BasePage):
         ele = [By.ID, f"{self.id_loc_base}/tvUseFaitOne"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
-    def 发布广告_买卖价格(self):
+    def 发布广告_出售价格(self):
         ele = [By.ID, f"{self.id_loc_base}/etSellPrice"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
-    def 发布广告_买卖数量(self):
+    def 发布广告_购买价格(self):
+        ele = [By.ID, f"{self.id_loc_base}/etBuyPrice"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 发布广告_出售数量(self):
         ele = [By.ID, f"{self.id_loc_base}/etSellNumber"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
-    def 发布广告_买卖数量_全部(self):
+    def 发布广告_购买数量(self):
+        ele = [By.ID, f"{self.id_loc_base}/etBuyNumber"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 发布广告_出售数量_全部(self):
         ele = [By.ID, f"{self.id_loc_base}/tvTotal"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
-    def 发布广告_总金额(self):
+    def 发布广告_出售总金额(self):
         ele = [By.ID, f"{self.id_loc_base}/etSellTotalPrice"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 发布广告_购买总金额(self):
+        ele = [By.ID, f"{self.id_loc_base}/etBuyTotalPrice"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
     def 发布广告_交易方式(self):
@@ -260,7 +272,7 @@ class 法币页(BasePage):
         ele = [By.ID, f"{self.id_loc_base}/cbTransfer"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
-    def 划转页面_from账胡(self):
+    def 划转页面_from账户(self):
         ele = [By.ID, f"{self.id_loc_base}/tvFromAccount"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
@@ -332,61 +344,127 @@ class 法币页(BasePage):
         ele = [By.ID, f"{self.id_loc_base}/tvOrderNickName"] if self.is_android else []
         return self.driver.find_elements(ele[0], ele[1])
 
-    def 订单记录_订单详情_交易总额(self):
+    def 订单记录_放币超时_订单详情_交易总额(self):
         ele = [By.ID, f"{self.id_loc_base}/tvOrderPayedTotalMoney"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
-    def 订单记录_订单详情_交易单价(self):
+    def 订单记录_放币超时_订单详情_交易单价(self):
         ele = [By.ID, f"{self.id_loc_base}/tvPayedOrderPrice"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
-    def 订单记录_订单详情_交易数量(self):
+    def 订单记录_放币超时_订单详情_交易数量(self):
         ele = [By.ID, f"{self.id_loc_base}/tvOrderPayedQuantity"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
-    def 订单记录_订单详情_支付方式(self):
+    def 订单记录_放币超时_订单详情_支付方式(self):
         ele = [By.ID, f"{self.id_loc_base}/tvPayedPayTypeTitle"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
-    def 订单记录_订单详情_收款人(self):
+    def 订单记录_放币超时_订单详情_收款人(self):
         ele = [By.ID, f"{self.id_loc_base}/tvOrderPayedNickName"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
-    def 订单记录_订单详情_账号(self):
+    def 订单记录_放币超时_订单详情_账号(self):
         ele = [By.ID, f"{self.id_loc_base}/tvOrderPayedAccount"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
-    def 订单记录_订单详情_订单号(self):
+    def 订单记录_放币超时_订单详情_订单号(self):
         ele = [By.ID, f"{self.id_loc_base}/tvOrderIdPayed"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
-    def 订单记录_订单详情_申诉(self):
+    def 订单记录_放币超时_订单详情_申诉(self):
         ele = [By.ID, f"{self.id_loc_base}/tvTradePayedComplaint"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_交易总额(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvOrderSubmittedTotalMoney"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_交易单价(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvOrderSubmittedPrice"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_交易数量(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvOrderSubmittedQuantity"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_支付方式(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvPayedPayType"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_切换支付方式(self):
+        ele = [By.ID, f"{self.id_loc_base}/llChangePayType"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_收款人(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvPayedFullName"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_银行卡号(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvPayedBankNumber"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_订单号(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvOrderId"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_取消订单(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvTradeCancel"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_取消订单消息(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvMessageInfo"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_取消订单_取消(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvMessageCancel"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_取消订单_确认(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvMessageEnter"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_已付款(self):
+        ele = [By.ID, f"{self.id_loc_base}/llTradeBuyOTC"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_进行中订单详情_订单号(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvOrderId"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
 
     def 订单记录_取消订单详情_交易总额(self):
         ele = [By.ID, f"{self.id_loc_base}/tvFinishTotalMoney"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
     def 订单记录_取消订单详情_收款人(self):
         ele = [By.ID, f"{self.id_loc_base}/tvFinishNickname"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
     def 订单记录_取消订单详情_交易单价(self):
         ele = [By.ID, f"{self.id_loc_base}/tvFinishPrice"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
     def 订单记录_取消订单详情_交易数量(self):
         ele = [By.ID, f"{self.id_loc_base}/tvFinishQuantity"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
     def 订单记录_取消订单详情_下单时间(self):
         ele = [By.ID, f"{self.id_loc_base}/tvFinishOrderDate"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
     def 订单记录_取消订单详情_订单号(self):
         ele = [By.ID, f"{self.id_loc_base}/tvFinishOrderId"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 订单记录_订单详情_订单状态(self):
+        if self.is_android:
+            xpath = "//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/" \
+                    "android.widget.LinearLayout/android.widget.TextView[1]"
+        else:
+            xpath = ""
+
+        # ele = [By.XPATH, f"{self.id_loc_base}/tvFinishTitle"] if self.is_android else []
+        return self.driver.find_element(By.XPATH, xpath)
 
     def 收款方式_收款类型(self):
         ele = [By.ID, f"{self.id_loc_base}/tvPayType"] if self.is_android else []
@@ -426,7 +504,19 @@ class 法币页(BasePage):
 
     def 收款方式_添加按钮(self):
         ele = [By.ID, f"{self.id_loc_base}/custom_header_tv_right_btn"] if self.is_android else []
-        return self.driver.find_elements(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 收款方式_添加_支付宝(self):
+        ele = [By.ID, f"{self.id_loc_base}/llAlipay"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 收款方式_添加_微信(self):
+        ele = [By.ID, f"{self.id_loc_base}/llWeChat"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 收款方式_添加_拍拍(self):
+        ele = [By.ID, f"{self.id_loc_base}/llPayPal"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
 
     def 我的昵称_昵称编辑框(self):
         ele = [By.ID, f"{self.id_loc_base}/etAccountNickName"] if self.is_android else []

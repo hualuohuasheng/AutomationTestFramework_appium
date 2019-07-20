@@ -10,12 +10,22 @@ class BasePage:
         self.is_android = 'desired' in driver.capabilities
         self.id_loc_base = 'com.ex55.app:id'
 
-    @classmethod
-    def locate_by_textview_name(cls, name):
-        ele = [By.XPATH, f"//android.widget.TextView[@text='{name}']"] if cls.is_android else []
+    def locate_by_textview_name(self, name):
+        ele = [By.XPATH, f"//android.widget.TextView[@text='{name}']"] if self.is_android else []
         return ele
 
-    @classmethod
-    def locate_by_button_name(cls, name):
-        ele = [By.XPATH, f"//android.widget.Button[@text='{name}']"] if cls.is_android else []
+    def locate_by_button_name(self, name):
+        ele = [By.XPATH, f"//android.widget.Button[@text='{name}']"] if self.is_android else []
         return ele
+
+    def 选择页签(self, name):
+        ele = self.locate_by_textview_name(name)
+        return self.driver.find_element(ele[0], ele[1])
+
+    def button(self, name):
+        ele = self.locate_by_button_name(name)
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 返回(self):
+        ele = [By.ID, f"{self.id_loc_base}/custom_header_iv_back"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])

@@ -1,14 +1,10 @@
 # -*- coding:utf-8 -*-
 
 from selenium.webdriver.common.by import By
+from xinyuan.app.appelement.base import BasePage
 
 
-class 币币页:
-
-    def __init__(self, driver):
-        self.driver = driver
-        self.is_android = 'desired' in driver.capabilities
-        self.id_loc_base = 'com.ex55.app:id'
+class 币币页(BasePage):
 
     # 首页上进入用户页面的按钮
     def 币币页按钮(self):

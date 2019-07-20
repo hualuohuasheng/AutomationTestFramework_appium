@@ -119,9 +119,25 @@ class 行情页(BasePage):
         ele = [By.ID, f"{self.id_loc_base}/tvPercentTop"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
+    def 行情详情_返回按钮(self):
+        ele = [By.ID, f"{self.id_loc_base}/llMarketsReturn"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 行情详情_标题(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvMarketsTitle"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 行情详情_分享按钮(self):
+        ele = [By.ID, f"{self.id_loc_base}/llMarketsShare"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 行情详情_分享_保存图片按钮(self):
+        ele = [By.ID, f"{self.id_loc_base}/ivLogo"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
     def 行情详情_自选按钮(self):
         ele = [By.ID, f"{self.id_loc_base}/llMarketsFavorites"] if self.is_android else []
-        return self.driver.find_elemens(ele[0], ele[1])
+        return self.driver.find_element(ele[0], ele[1])
 
     def 行情详情_市场价格(self):
         ele = [By.ID, f"{self.id_loc_base}/tvMarketPrice"] if self.is_android else []

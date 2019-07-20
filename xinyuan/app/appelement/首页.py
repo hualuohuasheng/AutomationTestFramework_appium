@@ -13,7 +13,7 @@ class 首页(BasePage):
             return self.driver.find_element_by_id("")
 
     def 广场按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/custom_header_iv_close"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/llSocialNewsFeed"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
     def 群组按钮(self):
@@ -46,7 +46,7 @@ class 首页(BasePage):
 
     def 首页_币种最新价(self):
         ele = [By.ID, f"{self.id_loc_base}/tvMarketsMainPrice"] if self.is_android else []
-        return self.driver.find_element(ele[0], ele[1])
+        return self.driver.find_elements(ele[0], ele[1])
 
     def 首页_币种涨跌幅(self):
         ele = [By.ID, f"{self.id_loc_base}/tvMarketsMainChange"] if self.is_android else []
@@ -54,12 +54,37 @@ class 首页(BasePage):
 
     def 首页_币种名称(self):
         ele = [By.ID, f"{self.id_loc_base}/tvMarketsMainTopLeft"] if self.is_android else []
-        return self.driver.find_element(ele[0], ele[1])
+        return self.driver.find_elements(ele[0], ele[1])
 
     def 首页_币种计价方式(self):
         ele = [By.ID, f"{self.id_loc_base}/tvMarketsMainTopRight"] if self.is_android else []
-        return self.driver.find_element(ele[0], ele[1])
+        return self.driver.find_elements(ele[0], ele[1])
 
     def 首页_外汇币种名称(self):
         ele = [By.ID, f"{self.id_loc_base}/tvMarketsMainBottom"] if self.is_android else []
+        return self.driver.find_elements(ele[0], ele[1])
+
+    def 首页_更多按钮(self):
+        ele = [By.ID, f"{self.id_loc_base}/llMainMarketsMore"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 首页_滚动公告(self):
+        ele = [By.ID, f"{self.id_loc_base}/llAdvertising"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    # Left，Mid，Right
+    def 首页_左边币种名称(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvLeftSymbolName"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 首页_左边币种价格(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvLeftSymbolPrice"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 首页_左边币种涨跌幅(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvLeftSymbolPercent"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 首页_左边币种换算价格(self):
+        ele = [By.ID, f"{self.id_loc_base}/tvLeftSymbolCurrency"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])

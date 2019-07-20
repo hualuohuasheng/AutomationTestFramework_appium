@@ -60,23 +60,19 @@ class 资产页(BasePage):
 
     def 资产页_币种资产_币种名称(self):
         ele = [By.ID, f"{self.id_loc_base}/tvBalancesName"] if self.is_android else []
-        return self.driver.find_element(ele[0], ele[1])
+        return self.driver.find_elements(ele[0], ele[1])
 
-    def 资产页_币种资产_币种计价方式(self):
+    def 资产页_币种资产_币种详细名称(self):
         ele = [By.ID, f"{self.id_loc_base}/tvBalancesVol"] if self.is_android else []
-        return self.driver.find_element(ele[0], ele[1])
-
-    def 资产页_币种资产_币种基数名称(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvBalancesVol"] if self.is_android else []
-        return self.driver.find_element(ele[0], ele[1])
+        return self.driver.find_elements(ele[0], ele[1])
 
     def 资产页_币种资产_币种数量(self):
         ele = [By.ID, f"{self.id_loc_base}/tvBalancesAmount"] if self.is_android else []
-        return self.driver.find_element(ele[0], ele[1])
+        return self.driver.find_elements(ele[0], ele[1])
 
     def 资产页_币种资产_币种换算金额(self):
         ele = [By.ID, f"{self.id_loc_base}/tvBalancesAmountFiat"] if self.is_android else []
-        return self.driver.find_element(ele[0], ele[1])
+        return self.driver.find_elements(ele[0], ele[1])
 
     def 资产页_资产细节_历史按钮(self):
         ele = [By.ID, f"{self.id_loc_base}/custom_header_tv_right_btn"] if self.is_android else []
@@ -104,6 +100,14 @@ class 资产页(BasePage):
 
     def 资产页_资产细节_充值按钮(self):
         ele = [By.ID, f"{self.id_loc_base}/btnBalancesDeposits"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 资产页_资产细节_提现按钮(self):
+        ele = [By.ID, f"{self.id_loc_base}/btnBalancesWithdrawal"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
+    def 资产页_资产细节_划转按钮(self):
+        ele = [By.ID, f"{self.id_loc_base}/btnBalancesWithdrawal"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
     def 充值页面_充值地址(self):
@@ -146,10 +150,6 @@ class 资产页(BasePage):
         ele = [By.ID, f"{self.id_loc_base}/ivCloseView"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
-    def 资产页_资产细节_提现按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/btnBalancesWithdrawal"] if self.is_android else []
-        return self.driver.find_element(ele[0], ele[1])
-
     def 提现页面_提现历史(self):
         ele = [By.ID, f"{self.id_loc_base}/custom_header_tv_right_btn"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
@@ -187,11 +187,11 @@ class 资产页(BasePage):
         return self.driver.find_element(ele[0], ele[1])
 
     def 提现页面_提现数量编辑框(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvAvailableBalance"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/etWithdrawAmount"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
     def 提现页面_全部按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/etWithdrawAmount"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvWithdrawAmountMax"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
     def 提现页面_手续费(self):
