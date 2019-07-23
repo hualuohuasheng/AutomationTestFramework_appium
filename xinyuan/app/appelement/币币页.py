@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 from selenium.webdriver.common.by import By
+from appium.webdriver.common.mobileby import MobileBy
 from xinyuan.app.appelement.base import BasePage
 
 
@@ -8,31 +9,31 @@ class 币币页(BasePage):
 
     # 首页上进入用户页面的按钮
     def 币币页按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/activity_main_ll_personal"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/activity_main_ll_personal"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, '币币']
         return self.driver.find_element(ele[0], ele[1])
 
     def 币种标题显示(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvTradeCoinsTitle"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvTradeCoinsTitle"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeNavigationBar/../XCUIElementTypeOther[2]/XCUIElementTypeStaticText']
         return self.driver.find_element(ele[0], ele[1])
 
     def 搜索按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/custom_header_iv_right_btn"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/custom_header_iv_right_btn"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, 'serch icon']
         return self.driver.find_element(ele[0], ele[1])
 
     def 搜索输入框(self):
-        ele = [By.ID, f"{self.id_loc_base}/etSearchInput"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/etSearchInput"] if self.is_android else [MobileBy.CLASS_NAME, 'XCUIElementTypeTextField']
         return self.driver.find_element(ele[0], ele[1])
 
     def 搜索_取消按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/searchBack"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/searchBack"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, '取消']
         return self.driver.find_element(ele[0], ele[1])
 
     def 搜索_清除搜索内容按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/ivSearchDelete"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/ivSearchDelete"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, '清除文本']
         return self.driver.find_element(ele[0], ele[1])
 
     def 搜索_结果(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvSearchListName"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvSearchListName"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeCell']
         return self.driver.find_element(ele[0], ele[1])
 
     def 币种标签选择(self, page):
@@ -52,27 +53,27 @@ class 币币页(BasePage):
         return self.driver.find_element(ele[0], ele[1])
 
     def 买入标签按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/rbTradeBuy"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/rbTradeBuy"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell[1]/XCUIElementTypeButton[`name == "买入"`][1]']
         return self.driver.find_element(ele[0], ele[1])
 
     def 卖出标签按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/rbTradeSell"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/rbTradeSell"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell[1]/XCUIElementTypeButton[`name == "卖出"`][1]']
         return self.driver.find_element(ele[0], ele[1])
 
     def 价格编辑框(self):
-        ele = [By.ID, f"{self.id_loc_base}/etInputPrice"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/etInputPrice"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell[1]/XCUIElementTypeTextField[1]']
         return self.driver.find_element(ele[0], ele[1])
 
     def 数量编辑框(self):
-        ele = [By.ID, f"{self.id_loc_base}/etInputAmount"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/etInputAmount"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell[1]/XCUIElementTypeTextField[2]']
         return self.driver.find_element(ele[0], ele[1])
 
     def 价格减少按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/btnTradeOrderPriceSubtract"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/btnTradeOrderPriceSubtract"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, 'iconLess']
         return self.driver.find_element(ele[0], ele[1])
 
     def 价格增加按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/btnTradeOrderPriceAdd"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/btnTradeOrderPriceAdd"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, 'iconAdd']
         return self.driver.find_element(ele[0], ele[1])
 
     def 换算价格显示(self):
@@ -83,48 +84,52 @@ class 币币页(BasePage):
         ele = [By.ID, f"{self.id_loc_base}/tradeOrderAvailable"] if self.is_android else []
         return self.driver.find_element(ele[0], ele[1])
 
+    def 币种可用计价方式(self):
+        ele = [By.ID, f"{self.id_loc_base}/tradeBuyAvailableName"] if self.is_android else []
+        return self.driver.find_element(ele[0], ele[1])
+
     def 数量比例按钮(self, percent):
-        ele = [By.ID, f"{self.id_loc_base}/btnPercent{percent}"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/btnPercent{percent}"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, f'{percent}%']
         return self.driver.find_element(ele[0], ele[1])
 
     def 成交金额显示(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvResultPrice"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvResultPrice"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[-1]']
         return self.driver.find_element(ele[0], ele[1])
 
     def 买入按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvTradeOrder"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvTradeOrder"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell[1]/XCUIElementTypeButton[`name == "买入"`][2]']
         return self.driver.find_element(ele[0], ele[1])
 
     def 卖出按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvTradeOrder"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvTradeOrder"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell[1]/XCUIElementTypeButton[`name == "卖出"`][2]']
         return self.driver.find_element(ele[0], ele[1])
 
     def 全部按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvLookAll"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvLookAll"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, '全部']
         return self.driver.find_element(ele[0], ele[1])
 
     def 订单价格(self, price):
-        ele = [By.XPATH, f"//android.widget.TextView[@text='{price}']"] if self.is_android else []
+        ele = [By.XPATH, f"//android.widget.TextView[@text='{price}']"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[5]']
         return self.driver.find_element(ele[0], ele[1])
 
     def 订单数量(self, amount):
-        ele = [By.XPATH, f"//android.widget.TextView[@text='{amount}']"] if self.is_android else []
+        ele = [By.XPATH, f"//android.widget.TextView[@text='{amount}']"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]']
         return self.driver.find_element(ele[0], ele[1])
 
     def 左上行情按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/ivTradeCoinsMarket"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/ivTradeCoinsMarket"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, 'kLineRemind']
         return self.driver.find_element(ele[0], ele[1])
 
     def 右上更多功能按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/llTradeCoinsMore"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/llTradeCoinsMore"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, 'more button 1']
         return self.driver.find_element(ele[0], ele[1])
 
     def 充值按钮(self):
-        ele = [By.XPATH, f"//android.widget.TextView[@text='充值']"] if self.is_android else []
+        ele = [By.XPATH, f"//android.widget.TextView[@text='充值']"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeStaticText[`name == 充值`]/**/XCUIElementTypeButton']
         return self.driver.find_element(ele[0], ele[1])
 
     def 历史委托按钮(self):
-        ele = [By.XPATH, f"//android.widget.TextView[@text='历史委托']"] if self.is_android else []
+        ele = [By.XPATH, f"//android.widget.TextView[@text='历史委托']"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeStaticText[`name == 委托历史`]/**/XCUIElementTypeButton']
         return self.driver.find_element(ele[0], ele[1])
 
     def 获取盘口所有价格(self):
@@ -136,60 +141,63 @@ class 币币页(BasePage):
         return self.driver.find_elements(ele[0], ele[1])
 
     def 获取当前委托所有订单币种(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvSymbol"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvSymbol"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[4]']
         return self.driver.find_elements(ele[0], ele[1])
 
     #  订单是买入还是卖出
     def 获取当前委托所有订单状态(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvStatus"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvStatus"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[1]']
         return self.driver.find_elements(ele[0], ele[1])
 
     def 获取当前委托所有订单价格(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvPrice"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvPrice"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[5]']
         return self.driver.find_elements(ele[0], ele[1])
 
     def 获取当前委托所有订单数量(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvAmount"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvAmount"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[2]']
         return self.driver.find_elements(ele[0], ele[1])
 
     def 获取当前委托所有订单日期(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvOrderDateTime"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvOrderDateTime"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[5]']
         return self.driver.find_elements(ele[0], ele[1])
 
     def 获取当前委托所有订单时间(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvOrderTime"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvOrderTime"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[6]']
         return self.driver.find_elements(ele[0], ele[1])
 
     def 获取当前委托所有订单取消(self):
-        ele = [By.ID, f"{self.id_loc_base}/tvCancel"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/tvCancel"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, '**/XCUIElementTypeCell/XCUIElementTypeStaticText[-1]']
         return self.driver.find_elements(ele[0], ele[1])
 
+    def 委托_返回(self):
+        return self.driver.find_element(By.ID, 'return back')
+
     def 历史委托_筛选按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/custom_header_tv_right_btn"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/custom_header_tv_right_btn"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, '筛选']
         return self.driver.find_element(ele[0], ele[1])
 
     def 历史委托_筛选_币种编辑框(self):
-        ele = [By.ID, f"{self.id_loc_base}/etCoinsTitle"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/etCoinsTitle"] if self.is_android else [MobileBy.CLASS_NAME, 'XCUIElementTypeTextField']
         return self.driver.find_element(ele[0], ele[1])
 
     def 历史委托_筛选_选择计价单位(self):
-        ele = [By.ID, f"{self.id_loc_base}/cbCoinsType"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/cbCoinsType"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, 'seleteMarketImage']
         return self.driver.find_element(ele[0], ele[1])
 
     def 历史委托_筛选_计价单位(self, name):
-        ele = [By.XPATH, f"//android.widget.TextView[@text='{name}']"] if self.is_android else []
+        ele = [By.XPATH, f"//android.widget.TextView[@text='{name}']"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, f'**/XCUIElementTypeButton[`name == "{name}"`]']
         return self.driver.find_element(ele[0], ele[1])
 
     def 历史委托_筛选_重置按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/btnScreeningReset"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/btnScreeningReset"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, '重置']
         return self.driver.find_element(ele[0], ele[1])
 
     def 历史委托_筛选_确认按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/btnScreeningEnter"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/btnScreeningEnter"] if self.is_android else [MobileBy.ACCESSIBILITY_ID, '确认']
         return self.driver.find_element(ele[0], ele[1])
 
     def 历史委托_筛选_table按钮(self, name):
-        ele = [By.XPATH, f"//android.widget.TextView[@text='{name}']"] if self.is_android else []
+        ele = [By.XPATH, f"//android.widget.TextView[@text='{name}']"] if self.is_android else [MobileBy.IOS_CLASS_CHAIN, f'**/XCUIElementTypeButton[`name == "{name}"`]']
         return self.driver.find_elements(ele[0], ele[1])
 
 

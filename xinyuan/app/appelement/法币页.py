@@ -7,7 +7,7 @@ from xinyuan.app.appelement.base import BasePage
 class 法币页(BasePage):
 
     def 法币页按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/activity_main_ll_exchange"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/activity_main_ll_exchange"] if self.is_android else [By.ID, '法币']
         return self.driver.find_element(ele[0], ele[1])
 
     def 选择法币买卖页签(self, name):

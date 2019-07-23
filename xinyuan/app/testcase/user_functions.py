@@ -44,7 +44,7 @@ def get_local_time():
     return res
 
 
-def 滑动页面(driver, start_x, start_y, end_x, end_y, duration):
+def 滑动页面(driver, start_x, start_y, end_x, end_y):
     if UserPage(driver).is_android:
         driver.swipe(start_x, start_y, end_x, end_y, duration=None)
     else:
@@ -178,6 +178,28 @@ def modify_login_password(driver, old_pwd, new_pwd):
     page.安全验证_登录密码_确认新密码().send_keys(new_pwd)
     page.安全验证_提交().click()
     sleep(10)
+
+
+def 行情页搜索币种(driver, 币种交易对):
+    page = 行情页(driver)
+    page.行情页搜索按钮().click()
+    driver.implicitly_wait(5)
+    page.行情页搜索_币种编辑框().send_keys(币种交易对)
+    page.搜索_结果().click()
+    driver.implicitly_wait(5)
+
+
+def 行情页添加自选通证(driver, 搜索交易对):
+    page = 行情页(driver)
+    page.编辑通证_添加按钮().click()
+    driver.implicitly_wait(5)
+    page.行情页搜索_币种编辑框().send_keys(搜索交易对)
+    page.编辑通证_勾选自选按钮().click()
+    if '确定删除自选' in driver.page_source:
+        page.选择页签('取消').click()
+        sleep(0.4)
+    page.行情页搜索_取消按钮().click()
+    driver.implicitly_wait(2)
 
 
 def 选择币种(driver, coins):
@@ -350,19 +372,24 @@ def 执行提现(driver, 提现数据):
 def 获取行情页编辑自选通证页的数据(driver):
     page = 行情页(driver)
     res = []
-    for i in range(len(page.编辑通证_交易对币种())):
+    elements = page.编辑通证_交易对币种()
+    if len(elements) == 0:
+        return res
+    for i in range(len(elements)):
         币种 = page.编辑通证_交易对币种()[i].text
         计价方式 = page.编辑通证_交易对计价币种()[i].text
-        print(币种, 计价方式)
         res.append(币种 + 计价方式)
+    print(res)
     return res
 
 
 def 获取行情页币种交易对数据(driver):
     page = 行情页(driver)
     res = []
-    for i in range(len(page.币种列表_币种名称())):
-        info = {"币种": page.币种列表_币种名称()[i].text, "计价名称": page.币种列表_币种计价方式名称()[i].text,
+    list_1 = page.币种列表_24H量()
+    for i in range(len(list_1)):
+        print(len(list_1))
+        info = {"币种交易对": page.币种列表_币种名称()[i].text + page.币种列表_币种计价方式名称()[i].text,
                 "24H量": page.币种列表_24H量()[i].text, "最新价": page.币种列表_最新价格按钮()[i].text,
                 "最新价换算价格": page.币种列表_换算为当前资产计价方式按钮()[i].text, '涨跌幅': page.币种列表_涨跌幅按钮()[i].text}
         res.append(info)
@@ -537,6 +564,9 @@ def 验证是否登录(driver, account, pwd):
         sleep(10)
         log_in(driver, account, pwd)
         sleep(15)
+    size = driver.get_window_size()
+    print(size)
+    driver.tap([[size['width'] - 30, size['height'] - 30]])
     driver.back()
 
 

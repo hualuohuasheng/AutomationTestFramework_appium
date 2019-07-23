@@ -7,7 +7,7 @@ from xinyuan.app.appelement.base import BasePage
 class 资产页(BasePage):
 
     def 资产页按钮(self):
-        ele = [By.ID, f"{self.id_loc_base}/activity_main_ll_marge_trade"] if self.is_android else []
+        ele = [By.ID, f"{self.id_loc_base}/activity_main_ll_marge_trade"] if self.is_android else [By.ID, '资产']
         return self.driver.find_element(ele[0], ele[1])
 
     def 资产页_设置按钮(self):

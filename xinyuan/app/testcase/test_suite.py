@@ -13,11 +13,13 @@ import xinyuan.app.testcase.device as device
 
 if __name__ == '__main__':
 
-    device_id = '69DDU17209002446'
-    device = device.Device.get_cur_device(device_id, '8.0')
+    # device_id = '69DDU17209002446'
+    # device = device.Device.get_cur_device(device_id, '8.0')
+    device_id = '63d592bb3ebf4f406f36c4aab99b5988a32d2318'
+    device = device.Device.get_cur_device(device_id, '12.3.1', 'IOS')
     # appium.AppiumServer.get_port(device_id)    # 启动appium server并获取port
     suite = unittest.TestSuite()
-    tests = [MarketTest('test_007_验证外汇潮牌点击正确')]
+    tests = [HomePageTest('test_003_验证首页标题币种跳转正确')]
     suite.addTests(tests)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)

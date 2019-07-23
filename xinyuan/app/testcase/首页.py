@@ -23,15 +23,20 @@ class HomePageTest(unittest.TestCase):
         sleep(2)
 
     def tearDown(self):
-        # self.driver.quit()
-        print('over')
+        self.driver.quit()
+        # print('over')
 
     def test_001_验证首页55Social跳转正确(self):
         page = self.page
-        for 按钮 in [page.广场按钮(), page.群组按钮(), page.好友按钮()]:
+        按钮组 = {'Newsfeed': page.广场按钮(), 'Groups': page.群组按钮(), 'Channels': page.好友按钮()}
+        for key, 按钮 in 按钮组.items():
             按钮.click()
             self.driver.implicitly_wait(10)
-            self.assertEqual('55Social', page.首页_标题().text, '跳转的页面标题不正确')
+            if page.is_android:
+                self.assertEqual('55Social', page.首页_标题().text, '跳转的页面标题不正确')
+            else:
+                title = f'{key} | 55 Social - Connect with influencers worldwide'
+                self.assertIsNotNone(page.首页_标题(title), '跳转的页面标题不正确')
             page.首页_h5网页关闭按钮().click()
             sleep(3)
             self.assertIsNotNone(按钮, '网页关闭不正确')
